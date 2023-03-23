@@ -1,11 +1,10 @@
-#include "sigx.c"
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include <sys/wait.h>
 
 struct sigaction ActFils;
 struct sigaction ActPere;
@@ -16,12 +15,10 @@ int cptFils = 0;
 void captfils(){
     rectvert(5);
     cptFils++;
-    
     if(cptFils == 3){
         detruitrec();
         exit(0);
     }
-
 }
 
 void captpere(){
@@ -55,14 +52,20 @@ int main(){
         
     } else if (fils_pid > 0){
         ActPere.sa_handler = captpere;
-        sigaction(SIGINT, &captpere, 0);
+        sigaction(SIGINT, &ActPere, 0);
         sleep(1);
         // kill(fils_pid, SIGINT);
         int n;
         while (1)
         {
             n = sleep(10);
-            ecritreceived(n);
+            if(n != 0){
+                printf("temps restant : %d \n", n);
+                fflush(stdout);
+            }
+            // printf("temps restant : %d \n", n);
+            // fflush(stdout);
+            // ecritreceived(n);
         }
     } else {
         printf("Erreur de création du fils");
