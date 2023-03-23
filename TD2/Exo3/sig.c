@@ -1,0 +1,73 @@
+#include "sigx.c"
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+struct sigaction ActFils;
+struct sigaction ActPere;
+pid_t fils_pid;
+int cptPere = 0;
+int cptFils = 0;
+
+void captfils(){
+    rectvert(5);
+    cptFils++;
+    
+    if(cptFils == 3){
+        detruitrec();
+        exit(0);
+    }
+
+}
+
+void captpere(){
+    cptPere++;
+    printf(" PERE %d : signal %d recu  %d \n", getpid(),cptPere);
+    fflush(stdout);
+    if(cptPere == 3){
+        printf("  PERE : fin du pere , trois signals sont deja recu");
+        fflush(stdout);
+        exit(0);
+    }
+}
+
+int main(){
+    fils_pid = fork();
+    if (fils_pid == 0){
+        initrec();
+        ActFils.sa_handler = captfils;
+        sigaction(SIGINT, &ActFils, 0);
+        int i = attendreclic();
+        while (i != -1)
+        {
+            if(i==0){
+                kill(getppid(), SIGINT);
+            }
+            i = attendreclic();
+            printf(" FILS :  pid du mon pere est : %d \n", getppid());
+            fflush(stdout);
+        }
+
+        
+    } else if (fils_pid > 0){
+        ActPere.sa_handler = captpere;
+        sigaction(SIGINT, &captpere, 0);
+        sleep(1);
+        // kill(fils_pid, SIGINT);
+        int n;
+        while (1)
+        {
+            n = sleep(10);
+            ecritreceived(n);
+        }
+    } else {
+        printf("Erreur de création du fils");
+        fflush(stdout);
+    }
+    printf("\n");
+    fflush(stdout);
+}
