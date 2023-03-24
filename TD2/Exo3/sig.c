@@ -14,6 +14,8 @@ pid_t fils_pid;
 int cptPere = 0;
 int cptFils = 0;
 
+
+// Fonction fils
 void captfils(){
     rectvert(5);
     cptFils++;
@@ -23,6 +25,8 @@ void captfils(){
     }
 }
 
+
+//Fonction pere
 void captpere(){
     cptPere++;
     printf(" PERE %d : signal %d recu  %d \n", getpid(),cptPere);
