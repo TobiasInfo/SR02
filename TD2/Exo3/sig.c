@@ -6,6 +6,8 @@
 #include <time.h>
 #include <sys/wait.h>
 
+
+//Variables globales
 struct sigaction ActFils;
 struct sigaction ActPere;
 pid_t fils_pid;
