@@ -29,10 +29,10 @@ void captfils(){
 //Fonction pere
 void captpere(){
     cptPere++;
-    printf(" PERE %d : signal %d recu  %d \n", getpid(),cptPere);
+    printf(" PERE %d : signal %d recu\n", getpid(),cptPere);
     fflush(stdout);
     if(cptPere == 3){
-        printf("  PERE : fin du pere , trois signals sont deja recu");
+        printf("  PERE : fin du pere , trois signals sont deja recu\n");
         fflush(stdout);
         exit(0);
     }
@@ -48,11 +48,13 @@ int main(){
         while (i != -1)
         {
             if(i==0){
+            printf("FILS envoit au PERE\nFILS : pid de mon pere est : %d\n", getppid());
+            fflush (stdout);
                 kill(getppid(), SIGINT);
             }
-            i = attendreclic();
             printf(" FILS :  pid du mon pere est : %d \n", getppid());
             fflush(stdout);
+            i = attendreclic();
         }
 
         
@@ -65,11 +67,9 @@ int main(){
         while (1)
         {
             n = sleep(10);
-            if(n != 0){
-                printf("temps restant : %d \n", n);
-                fflush(stdout);
-            }
-            // printf("temps restant : %d \n", n);
+            printf("temps restant : %d \n", n);
+            fflush(stdout);
+            //printf("temps restant : %d \n", n);
             // fflush(stdout);
             // ecritreceived(n);
         }
