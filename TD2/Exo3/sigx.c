@@ -118,7 +118,7 @@ initrec()
             cmap = DefaultColormap (xdisplay, xscreen);
         }
 
-	initwind ("red","yellow");
+	initwind ("red","green");
 	return 0;
 }
 
