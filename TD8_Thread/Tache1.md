@@ -23,7 +23,7 @@ i = 3:
 
 i = 4:
 
-    A[4] est faux, on pass à l'itération suivante.
+    A[4] est faux, on passe à l'itération suivante.
 
 C) Résultat final
 Après avoir parcouru toutes les valeurs de i, le tableau A contient les informations sur les nombres premiers jusqu'à 20. Les indices pour lesquels A[i] est vrai correspondent aux nombres premiers.
