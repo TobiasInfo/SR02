@@ -92,7 +92,7 @@ int P(int sem){
     }
     op.sem_num = sem;
     op.sem_op = -1;   
-    op.sem_flg = 0; // On ne l'utilise pas, c'est pour voir si on peut faire des opérations en mode bloquant ou non
+    // op.sem_flg = 0; // On ne l'utilise pas, c'est pour voir si on peut faire des opérations en mode bloquant ou non
     if((retour = semop(semid, &op, 1)) == -1){
         printf("Error performing P operation\n");
         return -2;
@@ -120,10 +120,50 @@ int V(int sem){
     }
     op.sem_num = sem;
     op.sem_op = 1;
-    op.sem_flg = 0;
+    // op.sem_flg = 0;
     if((retour = semop(semid, &op, 1)) == -1){
         printf("Error performing V operation\n");
         return -3;
     }
     return retour;
 }
+
+
+// int main() {
+//     int E;
+//     int shmid = shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0666);
+//     int *shmaddr = (int*)shmat(shmid, NULL, 0);
+//     *shmaddr = 0;
+    
+//     pid_t pid;
+//     pid = fork();
+    
+//     if (pid == 0) {
+//         // child
+//         srand(getpid()); // Seed the random number generator with child's process ID
+//         for (int i = 0; i < 100; i++) {
+//             int A = *shmaddr;
+//             usleep(rand() % 81 + 20);
+//             A++;
+//             *shmaddr = A;
+//             usleep(rand() % 81 + 20);
+//         }
+//         shmdt(shmaddr); // Detach shared memory segment from the child process
+//     } else {
+//         // parent
+//         srand(getpid()); // Seed the random number generator with parent's process ID
+//         for (int i = 0; i < 100; i++) {
+//             int A = *shmaddr;
+//             usleep(rand() % 81 + 20);
+//             A++;
+//             *shmaddr = A;
+//             usleep(rand() % 81 + 20);
+//             printf("E Pere = %d\n", *shmaddr);
+//             fflush(stdout);
+//         }
+//         shmdt(shmaddr); // Detach shared memory segment from the parent process
+//         shmctl(shmid, IPC_RMID, NULL); // Mark shared memory segment for deletion
+//     }
+    
+//     return 0;
+// }

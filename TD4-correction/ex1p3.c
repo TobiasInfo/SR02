@@ -2,8 +2,7 @@
 #include "sharemem.h"
 #define BLKSIZE 1024
 #define PERM (S_IRUSR | S_IWUSR) // la macro PERM définie dans l'instruction donnée représents les permissions de fichier qui accordent un accès en lecture et en écriture un propriétaire d'un fichier dans un programme // il s'agit d'une spécification // il n'est pas important de le connaître en détail
-#define SHMZ 27 // définir un valeur constante qui représents la taille du bloc de mémoire à
-créer
+#define SHMZ 27 // définir un valeur constante qui représents la taille du bloc de mémoire à créer
 // On doit déclarer à nouveau la fonction copierfichier
 int copierfichier(int f1, int f2) // copier le contenu du fichier f1 à f2, la fonction renvoie un entier (la nombre d'octets copiés)
 // On va définir les varibales
@@ -71,15 +70,20 @@ int main(int argc, char *argv[]) // la programme prend en entrés la nombre d'ar
     if((childpid=fork())==-1)
     {
         perror("Echec de fork");
-        if (detachandremove(id, sharedtotal)==-1) // En cas d'erreur lors de la création du processus fils, détachez et supprimez le segment de mémoire créé.
+        if (detachandremove(id, sharedtotal)==-1){
             perror("Echec de detruire le segment");
+        } // En cas d'erreur lors de la création du processus fils, détachez et supprimez le segment de mémoire créé.
     }
-    if (childpid>0) /*Parent code*/ //si le childpid est positif, cela signifie que nous exécutons le processus parent, du coup, assigner le descripteur de fichier fd1 à fd.
+    if (childpid>0){
         fd = fd1;
-    else
+    }
+    else{
         fd = fd2;
-    while ((octetslus=copierfichier(fd, STDOUT_FILENO)) > 0) // Utilisez la fonction copierfichier pour copier le contenu de fd par parent et fils vers le descripteur de fichier de sortie standard à afficher, puis renvoyer le nombre d'octets lus
-        totalbytes += octetslus;
+    } /*Parent code*/ //si le childpid est positif, cela signifie que nous exécutons le processus parent, du coup, assigner le descripteur de fichier fd1 à fd.
+    while ((octetslus=copierfichier(fd, STDOUT_FILENO)) > 0){
+         totalbytes += octetslus;
+    } // Utilisez la fonction copierfichier pour copier le contenu de fd par parent et fils vers le descripteur de fichier de sortie standard à afficher, puis renvoyer le nombre d'octets lus
+       
     if (childpid == 0) /*child code*/ // Dans le processus fils, écrire les octets lus dans le segment de mémoire partagée
     {
         *sharedtotal=totalbytes;
@@ -87,17 +91,18 @@ int main(int argc, char *argv[]) // la programme prend en entrés la nombre d'ar
     }
     // maintenant, le parent doit attendre que le processus fils termine son processus en utilisant la fonction wait()
 // Puis afficher le nombre d'octets lus par le parent, le fils et le nombre total d'octets
-    if (wait(NULL) == -1) //
+    if (wait(NULL) == -1){
         perror("Echec de wait");
+    } 
     else
     {
         fprintf(stderr, "Octets copiés: %8d par le parent\n", totalbytes);
         fprintf(stderr, "%8d Octets copiés par le fils\n", *sharedtotal);
         fprintf(stderr, "Octet total copiés: %8d\n", totalbytes+ *sharedtotal);
     }
-//
-    if(detachandremove(id, sharedtotal) == -1) // SUpprimer le segment de mémoire créé
+    if(detachandremove(id, sharedtotal) == -1){
         perror("Echec de detruire le segment");
+    } // SUpprimer le segment de mémoire créé 
     return 0;
 }
 

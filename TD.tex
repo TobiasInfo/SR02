@@ -1,0 +1,692 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\usepackage[a4paper,top=2cm,bottom=1.5cm,left=2cm,right=2cm,marginparwidth=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage[font=small, labelfont=bf]{caption}
+%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{textcomp}
+\usepackage{fancyvrb}
+\usepackage{incgraph}
+\usepackage{algorithm}
+\usepackage{pdfpages}
+
+% Mise en page 
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\setlength\headheight{15pt}
+ \setlength{\marginparwidth}{2cm}
+\usepackage[
+    left = \flqq{},% 
+    right = \frqq{},% 
+    leftsub = \flq{},% 
+    rightsub = \frq{} %
+    ]{dirtytalk}
+    \setlength\headheight{15pt}
+    
+    % Ligne de Haut de page (Nom + UV)
+    \fancyhead[L]{SAVARY Tobias UTC - GI02} 
+    \fancyhead[R]{TODO : UV - Rapport TPX}
+
+    % Bas de page (Nomero de page + UTC)
+    \fancyfoot[R]{\thepage}
+    \fancyfoot[L]{Université de Technologie de Compiègne}
+     \setlength {\marginparwidth}{2cm}
+     \renewcommand{\footrulewidth}{.5pt}
+
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{td2-exo1}{%
+\subsection{TD2 : Exo1}\label{td2-exo1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}signal.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}unistd.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/types.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}time.h\textgreater{}}
+
+
+\KeywordTok{struct}\NormalTok{ sigaction ActFils;}
+\KeywordTok{struct}\NormalTok{ sigaction ActPere;}
+\NormalTok{pid\_t fils\_pid;}
+
+\DataTypeTok{void}\NormalTok{ fonction\_fils()\{}
+    \DataTypeTok{int}\NormalTok{ val = rand() \% }\DecValTok{30}\NormalTok{ + }\DecValTok{10}\NormalTok{;}
+\NormalTok{    printf(}\StringTok{"\%d"}\NormalTok{, val);}
+\NormalTok{    fflush(stdout);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ fonction\_pere()\{}
+\NormalTok{    kill(fils\_pid, SIGUSR1);}
+\NormalTok{    alarm(}\DecValTok{5}\NormalTok{);}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main()\{}
+\NormalTok{    printf(}\StringTok{"INIT"}\NormalTok{);}
+\NormalTok{    fils\_pid = fork();}
+    \ControlFlowTok{if}\NormalTok{ (fils\_pid == }\DecValTok{0}\NormalTok{)\{}
+        \CommentTok{// printf("Je suis le fils");}
+\NormalTok{        ActFils.sa\_handler = fonction\_fils;}
+\NormalTok{        sigaction(SIGUSR1, \&ActFils, }\DecValTok{0}\NormalTok{);}
+        \ControlFlowTok{while}\NormalTok{(}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{            pause();}
+\NormalTok{        \}}
+\NormalTok{    \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (fils\_pid \textgreater{} }\DecValTok{0}\NormalTok{)\{}
+        \CommentTok{// printf("Je suis le pere");}
+\NormalTok{        ActPere.sa\_handler = fonction\_pere;}
+\NormalTok{        sigaction(SIGALRM, \&ActPere, }\DecValTok{0}\NormalTok{);}
+\NormalTok{        alarm(}\DecValTok{5}\NormalTok{);}
+        \ControlFlowTok{while}\NormalTok{(}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{            sleep(}\DecValTok{1}\NormalTok{);}
+\NormalTok{            printf(}\StringTok{"{-}"}\NormalTok{);}
+\NormalTok{            fflush(stdout); }\CommentTok{// Pour afficher le printf sans attendre le retour à la ligne (vide le buffer)}
+\NormalTok{        \}}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        printf(}\StringTok{"Erreur de création du fils"}\NormalTok{);}
+\NormalTok{    \}}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{td2-exo2}{%
+\subsection{TD2 : Exo2}\label{td2-exo2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}signal.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}unistd.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/types.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}time.h\textgreater{}}
+
+
+\KeywordTok{struct}\NormalTok{ sigaction ActFils;}
+\KeywordTok{struct}\NormalTok{ sigaction ActPere;}
+\NormalTok{pid\_t fils\_pid;}
+\DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{;}
+\DataTypeTok{char}\NormalTok{ cfils = }\CharTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{;}
+\DataTypeTok{char}\NormalTok{ cpere = }\CharTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{;}
+
+\DataTypeTok{void}\NormalTok{ fonction\_fils()\{}
+\NormalTok{    cpt++;}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} cpt \&\& cfils \textless{}= }\CharTok{\textquotesingle{}z\textquotesingle{}}\NormalTok{; i++)\{}
+\NormalTok{        printf(}\StringTok{"\%c"}\NormalTok{, cfils);}
+\NormalTok{        fflush(stdout);}
+\NormalTok{        cfils++;}
+\NormalTok{    \}}
+\NormalTok{    kill(getppid(), SIGUSR1);}
+    \ControlFlowTok{if}\NormalTok{(cfils \textgreater{} }\CharTok{\textquotesingle{}z\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{        exit(}\DecValTok{0}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ fonction\_pere()\{}
+\NormalTok{    cpt++;}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} cpt \&\& cpere \textless{}= }\CharTok{\textquotesingle{}Z\textquotesingle{}}\NormalTok{; i++)\{}
+\NormalTok{        printf(}\StringTok{"\%c"}\NormalTok{, cpere);}
+\NormalTok{        fflush(stdout);}
+\NormalTok{        cpere++;}
+\NormalTok{    \}}
+    \ControlFlowTok{if}\NormalTok{(cpere \textgreater{} }\CharTok{\textquotesingle{}Z\textquotesingle{}}\NormalTok{)\{}
+\NormalTok{        exit(}\DecValTok{0}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{    kill(fils\_pid, SIGUSR1);}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main()\{}
+\NormalTok{    fils\_pid = fork();}
+    \ControlFlowTok{if}\NormalTok{ (fils\_pid == }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{        ActFils.sa\_handler = fonction\_fils;}
+\NormalTok{        sigaction(SIGUSR1, \&ActFils, }\DecValTok{0}\NormalTok{);}
+        \ControlFlowTok{while}\NormalTok{ (}\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            pause();}
+\NormalTok{        \}}
+        
+\NormalTok{    \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (fils\_pid \textgreater{} }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{        ActPere.sa\_handler = fonction\_pere;}
+\NormalTok{        sigaction(SIGUSR1, \&ActPere, }\DecValTok{0}\NormalTok{);}
+\NormalTok{        sleep(}\DecValTok{1}\NormalTok{);}
+\NormalTok{        kill(fils\_pid, SIGUSR1);}
+        \ControlFlowTok{while}\NormalTok{ (}\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            pause();}
+\NormalTok{        \}}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        printf(}\StringTok{"Erreur de création du fils"}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{td2-exo3}{%
+\subsection{TD2 : Exo3}\label{td2-exo3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}signal.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}unistd.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/types.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}time.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/wait.h\textgreater{}}
+
+
+\CommentTok{//Variables globales}
+\KeywordTok{struct}\NormalTok{ sigaction ActFils;}
+\KeywordTok{struct}\NormalTok{ sigaction ActPere;}
+\NormalTok{pid\_t fils\_pid;}
+
+\CommentTok{//Compteurs de SIGINT}
+\CommentTok{//Hypothèse : les compteurs de SIGINT sont indépendants }
+\DataTypeTok{int}\NormalTok{ cptPere = }\DecValTok{0}\NormalTok{;}
+\DataTypeTok{int}\NormalTok{ cptFils = }\DecValTok{0}\NormalTok{;}
+
+
+\CommentTok{// Fonction fils}
+\DataTypeTok{void}\NormalTok{ captfils()\{}
+\NormalTok{    rectvert(}\DecValTok{5}\NormalTok{);}
+\NormalTok{    cptFils++;}
+    
+    \CommentTok{// 3 SIGINT Recu pour le processus fils}
+    \ControlFlowTok{if}\NormalTok{(cptFils == }\DecValTok{3}\NormalTok{)\{}
+\NormalTok{        detruitrec();}
+\NormalTok{        exit(}\DecValTok{0}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+
+\CommentTok{//Fonction pere}
+\DataTypeTok{void}\NormalTok{ captpere()\{}
+\NormalTok{    cptPere++;}
+\NormalTok{    printf(}\StringTok{"PERE \%d : signal \%d recu}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, getpid(),cptPere);}
+\NormalTok{    fflush(stdout);}
+    
+    \CommentTok{//Si 3 SIGINT reçus pour le père}
+    \ControlFlowTok{if}\NormalTok{(cptPere == }\DecValTok{3}\NormalTok{)\{}
+\NormalTok{        printf(}\StringTok{"PERE : fin du pere , trois signals sont deja recu}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        fflush(stdout);}
+\NormalTok{        exit(}\DecValTok{0}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+
+\CommentTok{//{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{//Main}
+
+\DataTypeTok{int}\NormalTok{ main()\{}
+\NormalTok{    fils\_pid = fork();}
+    
+    \CommentTok{//Partie Processus fils}
+    \ControlFlowTok{if}\NormalTok{ (fils\_pid == }\DecValTok{0}\NormalTok{)\{}
+    \DataTypeTok{int}\NormalTok{ i =}\DecValTok{0}\NormalTok{;}
+\NormalTok{        initrec();}
+\NormalTok{        ActFils.sa\_handler = captfils;}
+\NormalTok{        sigaction(SIGINT, \&ActFils, }\DecValTok{0}\NormalTok{);}
+        
+        \CommentTok{//Tant qu\textquotesingle{}on ne clic pas sur le boutton de fin}
+        \ControlFlowTok{while}\NormalTok{ (i != {-}}\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            i = attendreclic();}
+            
+            \CommentTok{//On clic sur 0}
+            \ControlFlowTok{if}\NormalTok{(i==}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{                printf(}\StringTok{"FILS envoit au PERE}\SpecialCharTok{\textbackslash{}n}\StringTok{FILS :  pid du mon pere est : \%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, getppid());}
+\NormalTok{                fflush (stdout);}
+            
+            \CommentTok{//Envoie du SIGINT au père}
+\NormalTok{                kill(getppid(), SIGINT);}
+\NormalTok{            \}}
+            
+            \CommentTok{//On clic sur autre chose que 0}
+            \ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{            printf(}\StringTok{"FILS :  pid de mon pere est : \%d }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, getppid());}
+\NormalTok{            fflush(stdout);}
+\NormalTok{            \}}
+\NormalTok{        \}}
+        
+        \CommentTok{// Après clic sur fin }
+\NormalTok{    printf(}\StringTok{"FILS :fin du fils apres clic sur FIN}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    fflush(stdout);}
+\NormalTok{    exit(}\DecValTok{0}\NormalTok{);}
+\NormalTok{    \} }
+    
+    \CommentTok{// Partie processus père}
+    \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (fils\_pid \textgreater{} }\DecValTok{0}\NormalTok{)\{}
+\NormalTok{        ActPere.sa\_handler = captpere;}
+\NormalTok{        sigaction(SIGINT, \&ActPere, }\DecValTok{0}\NormalTok{);}
+        
+        \CommentTok{// Attente pour être sur que le sigaction }
+        \CommentTok{// du fils a bien été pris en compte}
+\NormalTok{        sleep(}\DecValTok{1}\NormalTok{);}
+        \DataTypeTok{int}\NormalTok{ n;}
+        \ControlFlowTok{while}\NormalTok{ (}\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            n = sleep(}\DecValTok{10}\NormalTok{);}
+\NormalTok{            printf(}\StringTok{"temps restant : \%d }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, n);}
+\NormalTok{            fflush(stdout);}
+\NormalTok{        \}}
+        
+\NormalTok{    \} }
+    
+    \CommentTok{// Si on a pas réussi à créer le fils}
+    \ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        printf(}\StringTok{"Erreur de création du fils"}\NormalTok{);}
+\NormalTok{        fflush(stdout);}
+\NormalTok{    \}}
+\NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    fflush(stdout);}
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{td4-exo1}{%
+\subsection{TD4 : Exo1}\label{td4-exo1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{"sharemem.h"}
+
+\PreprocessorTok{\#define BLKSIZE 1024}
+
+\DataTypeTok{int}\NormalTok{ copierfichier(}\DataTypeTok{int}\NormalTok{ f1, }\DataTypeTok{int}\NormalTok{ f2)\{}
+    \DataTypeTok{char}\NormalTok{ buf[BLKSIZE];}
+    \DataTypeTok{int}\NormalTok{ octets\_lus, octets\_ecrits, total = }\DecValTok{0}\NormalTok{;}
+    \ControlFlowTok{for}\NormalTok{(;;)\{}
+        \ControlFlowTok{if}\NormalTok{((octets\_lus = read(f1, buf, BLKSIZE)) \textless{}= }\DecValTok{0}\NormalTok{)\{}
+            \ControlFlowTok{break}\NormalTok{;}
+\NormalTok{        \}}
+        \ControlFlowTok{if}\NormalTok{((octets\_ecrits = write(f2, buf, octets\_lus)) == {-}}\DecValTok{1}\NormalTok{)\{}
+            \ControlFlowTok{break}\NormalTok{;}
+\NormalTok{        \}}
+\NormalTok{        total += octets\_ecrits;}
+\NormalTok{    \}}
+    \ControlFlowTok{return}\NormalTok{ total;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{td4-exo2}{%
+\subsection{TD4 : Exo2}\label{td4-exo2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// surv}
+\PreprocessorTok{\#include }\ImportTok{"sharemem.h"}
+
+\PreprocessorTok{\#define BLKSIZE 1024}
+
+\DataTypeTok{int}\NormalTok{ copierfichier(}\DataTypeTok{int}\NormalTok{ f1, }\DataTypeTok{int}\NormalTok{ f2)\{}
+    \DataTypeTok{char}\NormalTok{ buf[BLKSIZE];}
+    \DataTypeTok{int}\NormalTok{ octets\_lus, octets\_ecrits, total = }\DecValTok{0}\NormalTok{;}
+    \ControlFlowTok{for}\NormalTok{(;;)\{}
+        \ControlFlowTok{if}\NormalTok{((octets\_lus = read(f1, buf, BLKSIZE)) \textless{}= }\DecValTok{0}\NormalTok{)\{}
+            \ControlFlowTok{break}\NormalTok{;}
+\NormalTok{        \}}
+        \ControlFlowTok{if}\NormalTok{((octets\_ecrits = write(f2, buf, octets\_lus)) == {-}}\DecValTok{1}\NormalTok{)\{}
+            \ControlFlowTok{break}\NormalTok{;}
+\NormalTok{        \}}
+\NormalTok{        total += octets\_ecrits;}
+\NormalTok{    \}}
+    \ControlFlowTok{return}\NormalTok{ total;}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ *argv[])\{}
+    \DataTypeTok{int}\NormalTok{ octets\_lus, childpid, fd, fd1, fd2;}
+    \ControlFlowTok{if}\NormalTok{(argc == }\DecValTok{3}\NormalTok{)\{}
+\NormalTok{        fprintf(stderr,}\StringTok{"Usage: \%s \textless{}fichier1\textgreater{} \textless{}fichier2\textgreater{} }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
+        \ControlFlowTok{return} \DecValTok{1}\NormalTok{;}
+\NormalTok{    \}}
+    \ControlFlowTok{if}\NormalTok{(((fd1 = open(argv[}\DecValTok{1}\NormalTok{], O\_RDONLY)) == {-}}\DecValTok{1}\NormalTok{) || (fd2 = open(argv[}\DecValTok{2}\NormalTok{], O\_RDONLY) == {-}}\DecValTok{1}\NormalTok{))\{ }\CommentTok{// Vérifie si c\textquotesingle{}est bien ouvert}
+\NormalTok{        perror(}\StringTok{"Echec"}\NormalTok{);}
+        \ControlFlowTok{return} \DecValTok{1}\NormalTok{;}
+\NormalTok{    \}}
+    \ControlFlowTok{if}\NormalTok{((childpid = fork()) == {-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        perror(}\StringTok{"Echec"}\NormalTok{);}
+        \ControlFlowTok{return} \DecValTok{1}\NormalTok{;}
+\NormalTok{    \}}
+    \ControlFlowTok{if}\NormalTok{(childpid\textgreater{}}\DecValTok{0}\NormalTok{) }\CommentTok{// Parent code}
+\NormalTok{        fd = fd1;}
+    \ControlFlowTok{else}  \CommentTok{// Child code}
+\NormalTok{        fd = fd2;}
+\NormalTok{    octets\_lus = copierfichier(fd, STDOUT\_FILENO);}
+\NormalTok{    fprintf(stderr, }\StringTok{"Octets Lus : \%d }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, octets\_lus);}
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+
+
+\CommentTok{// Compile : gcc {-}u prgm surv.c}
+\CommentTok{// Run : ./prgm f1.data fé.data}
+\CommentTok{// SURVSHM}
+\PreprocessorTok{\#include }\ImportTok{"sharemem.h"}
+
+\PreprocessorTok{\#define BLKSIZE 1024}
+
+\PreprocessorTok{\#define PERM (S\_IRUSR | S\_IWUSR)}
+\PreprocessorTok{\#define SHMZ 27}
+
+\DataTypeTok{int}\NormalTok{ copierfichier(}\DataTypeTok{int}\NormalTok{ f1, }\DataTypeTok{int}\NormalTok{ f2)\{}
+    \DataTypeTok{char}\NormalTok{ buf[BLKSIZE];}
+    \DataTypeTok{int}\NormalTok{ octets\_lus, octets\_ecrits, total = }\DecValTok{0}\NormalTok{;}
+    \ControlFlowTok{for}\NormalTok{(;;)\{}
+        \ControlFlowTok{if}\NormalTok{((octets\_lus = read(f1, buf, BLKSIZE)) \textless{}= }\DecValTok{0}\NormalTok{)\{}
+            \ControlFlowTok{break}\NormalTok{;}
+\NormalTok{        \}}
+        \ControlFlowTok{if}\NormalTok{((octets\_ecrits = write(f2, buf, octets\_lus)) == {-}}\DecValTok{1}\NormalTok{)\{}
+            \ControlFlowTok{break}\NormalTok{;}
+\NormalTok{        \}}
+\NormalTok{        total += octets\_ecrits;}
+\NormalTok{    \}}
+    \ControlFlowTok{return}\NormalTok{ total;}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ statchAndRemove(}\DataTypeTok{int}\NormalTok{ shmid, }\DataTypeTok{char}\NormalTok{ *shmdt)\{}
+    \DataTypeTok{int}\NormalTok{ error = }\DecValTok{0}\NormalTok{;}
+    \ControlFlowTok{if}\NormalTok{(shmdt(shmdt) == {-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        error = errno;}
+\NormalTok{    \}}
+    \ControlFlowTok{if}\NormalTok{(shmdt(shmid, IPC\_RMID, NULL) == {-}}\DecValTok{1}\NormalTok{ \&\& !error)\{}
+\NormalTok{        error = errno;}
+\NormalTok{    \}}
+    \ControlFlowTok{if}\NormalTok{(!error)\{}
+        \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{td4-exo3}{%
+\subsection{TD4 : Exo3}\label{td4-exo3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// INIFIC}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}fcntl.h\textgreater{}}
+
+\DataTypeTok{void}\NormalTok{ main()\{}
+    \DataTypeTok{int}\NormalTok{ tab1[}\DecValTok{10}\NormalTok{]=\{}\DecValTok{11}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{33}\NormalTok{,}\DecValTok{44}\NormalTok{,}\DecValTok{55}\NormalTok{,}\DecValTok{66}\NormalTok{,}\DecValTok{77}\NormalTok{,}\DecValTok{88}\NormalTok{,}\DecValTok{99}\NormalTok{,}\DecValTok{1000}\NormalTok{\};}
+    \DataTypeTok{int}\NormalTok{ fd = open(}\StringTok{"titi.dat"}\NormalTok{, O\_RDWR|O\_CREAT|O\_TRUNC, }\BaseNTok{0666}\NormalTok{);}
+    \ControlFlowTok{if}\NormalTok{(fd == {-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        printf(}\StringTok{"Erreur lors de l\textquotesingle{}ouverture du fichier}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        perror(}\StringTok{"open"}\NormalTok{);}
+\NormalTok{        exit({-}}\DecValTok{1}\NormalTok{);}
+\NormalTok{    \}}
+\NormalTok{    write(fd, tab1, }\DecValTok{10}\NormalTok{*}\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{int}\NormalTok{));}
+\NormalTok{    close(fd);}
+\NormalTok{    printf(}\StringTok{"Fichier initialisé}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{\}}
+\CommentTok{// LIREFIC}
+\DataTypeTok{void}\NormalTok{ main()\{}
+    \DataTypeTok{int}\NormalTok{ tab2[}\DecValTok{10}\NormalTok{];}
+    \DataTypeTok{int}\NormalTok{ i;}
+    \CommentTok{// Ouverture du fichier}
+    \DataTypeTok{int}\NormalTok{ fd = open(}\StringTok{"titi.dat"}\NormalTok{, O\_RDWR, }\BaseNTok{0666}\NormalTok{);}
+    \ControlFlowTok{if}\NormalTok{(fd == {-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        printf(}\StringTok{"Erreur lors de l\textquotesingle{}ouverture du fichier}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        perror(}\StringTok{"open"}\NormalTok{);}
+\NormalTok{        exit({-}}\DecValTok{1}\NormalTok{);}
+\NormalTok{    \}}
+    \CommentTok{//Lecture du fichier}
+\NormalTok{    read(fd, tab2, }\DecValTok{10}\NormalTok{*}\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{int}\NormalTok{));}
+\NormalTok{    close(fd);}
+    \ControlFlowTok{for}\NormalTok{(i=}\DecValTok{0}\NormalTok{; i\textless{}}\DecValTok{10}\NormalTok{; i++) }
+\NormalTok{        printf(}\StringTok{"\%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,tab2[i]);}
+\NormalTok{\}}
+
+\CommentTok{// MODIFIC}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}fcntl.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}unistd.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/types.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/stat.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/mman.h\textgreater{}}
+
+
+\DataTypeTok{void}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{* argv[])\{}
+    \DataTypeTok{int}\NormalTok{ i;}
+    \KeywordTok{struct}\NormalTok{ stat file\_stat;}
+    \DataTypeTok{char}\NormalTok{* addr;}
+    \DataTypeTok{int}\NormalTok{ file;}
+    \DataTypeTok{int}\NormalTok{* tab1;}
+     \CommentTok{// Ouverture du fichier}
+\NormalTok{    file = open(}\StringTok{"titi.dat"}\NormalTok{,O\_RDWR, }\BaseNTok{0666}\NormalTok{);}
+    \ControlFlowTok{if}\NormalTok{(file == {-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        printf(}\StringTok{"Erreur lors de l\textquotesingle{}ouverture du fichier}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        perror(}\StringTok{"open"}\NormalTok{);}
+\NormalTok{        exit({-}}\DecValTok{1}\NormalTok{);}
+\NormalTok{    \}}
+    
+    \CommentTok{// Récupération des informations du fichier}
+\NormalTok{    fstat(file, \&file\_stat);}
+
+    \CommentTok{//Ouverture de la mémoire partagé}
+\NormalTok{    tab1 = mmap(NULL,file\_stat.st\_size,PROT\_READ | PROT\_WRITE,MAP\_SHARED,file,}\DecValTok{0}\NormalTok{);}
+\NormalTok{    close(file);}
+    \CommentTok{//Boucle sur i}
+    \ControlFlowTok{while}\NormalTok{ (}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        printf(}\StringTok{"Rentrez i }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        scanf(}\StringTok{" \%d"}\NormalTok{,\&i);}
+        \ControlFlowTok{if}\NormalTok{ (i == }\DecValTok{99}\NormalTok{)\{}
+            \CommentTok{// Sortie du programme}
+\NormalTok{            munmap(tab1, file\_stat.st\_size);}
+\NormalTok{            exit(}\DecValTok{0}\NormalTok{);}
+\NormalTok{        \}}
+        \CommentTok{// Incrémentation du nombre de 1 à l\textquotesingle{}indice [i] dans le segment de la mémoire partagée}
+        \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{( i \textgreater{}= }\DecValTok{0}\NormalTok{ \&\& i \textless{}= }\DecValTok{9}\NormalTok{)\{}
+\NormalTok{            tab1[i]++;}
+\NormalTok{        \}}
+\NormalTok{    \}}
+
+    \CommentTok{// Libération de la mémoire partagée}
+\NormalTok{    munmap(tab1, file\_stat.st\_size);}
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+
+\CommentTok{// SHOWFIC}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}fcntl.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}unistd.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/types.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/stat.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/mman.h\textgreater{}}
+
+
+\DataTypeTok{void}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{* argv[])\{}
+    \DataTypeTok{int}\NormalTok{ i;}
+    \KeywordTok{struct}\NormalTok{ stat file\_stat;}
+    \DataTypeTok{char}\NormalTok{* addr;}
+    \DataTypeTok{int}\NormalTok{ file;}
+    \DataTypeTok{int}\NormalTok{* tab1;}
+
+    \CommentTok{// Ouverture du fichier}
+\NormalTok{    file = open(}\StringTok{"titi.dat"}\NormalTok{,O\_RDWR, }\BaseNTok{0666}\NormalTok{);}
+    \ControlFlowTok{if}\NormalTok{(file == {-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        printf(}\StringTok{"Erreur lors de l\textquotesingle{}ouverture du fichier}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        perror(}\StringTok{"open"}\NormalTok{);}
+\NormalTok{        exit({-}}\DecValTok{1}\NormalTok{);}
+\NormalTok{    \}}
+    
+    \CommentTok{// Récupération des informations du fichier}
+\NormalTok{    fstat(file, \&file\_stat);}
+
+    \CommentTok{//Ouverture de la mémoire partagé}
+\NormalTok{    tab1 = mmap(NULL,file\_stat.st\_size,PROT\_READ | PROT\_WRITE,MAP\_SHARED,file,}\DecValTok{0}\NormalTok{);}
+\NormalTok{    close(file);}
+    \CommentTok{//Boucle sur i}
+    \ControlFlowTok{while}\NormalTok{ (}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{        printf(}\StringTok{"Rentrez i }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        scanf(}\StringTok{" \%d"}\NormalTok{,\&i);}
+        \ControlFlowTok{if}\NormalTok{ (i == }\DecValTok{99}\NormalTok{)\{}
+            \CommentTok{// Sortie du programme}
+\NormalTok{            munmap(tab1, file\_stat.st\_size);}
+\NormalTok{            exit(}\DecValTok{0}\NormalTok{);}
+\NormalTok{        \}}
+        \CommentTok{// Affichage du contenu de la mémoire partagée}
+        \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{( i \textgreater{}= }\DecValTok{0}\NormalTok{ \&\& i \textless{}= }\DecValTok{9}\NormalTok{)\{}
+            \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ ctp = }\DecValTok{0}\NormalTok{ ; ctp \textless{}= }\DecValTok{9}\NormalTok{ ; ctp++)}
+\NormalTok{                printf(}\StringTok{"\%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, tab1[ctp]);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    
+    \CommentTok{// Libération de la mémoire partagée}
+\NormalTok{    munmap(tab1, file\_stat.st\_size);}
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{td4-exo4}{%
+\subsection{TD4 : Exo4}\label{td4-exo4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/mman.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}sys/stat.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}fcntl.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}unistd.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{* argv[]) \{}
+    \ControlFlowTok{if}\NormalTok{(argc != }\DecValTok{2}\NormalTok{) \{}
+\NormalTok{        printf(}\StringTok{"Syntaxe: \%s fichier\_à\_inverser}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
+\NormalTok{        exit({-}}\DecValTok{1}\NormalTok{);}
+\NormalTok{    \}}
+
+    \DataTypeTok{int}\NormalTok{ fd = open(argv[}\DecValTok{1}\NormalTok{], O\_RDWR);}
+    \ControlFlowTok{if}\NormalTok{(fd == {-}}\DecValTok{1}\NormalTok{) \{}
+\NormalTok{        printf(}\StringTok{"Erreur lors de l\textquotesingle{}ouverture du fichier}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{        perror(}\StringTok{"open"}\NormalTok{);}
+\NormalTok{        exit({-}}\DecValTok{1}\NormalTok{);}
+\NormalTok{    \}}
+
+    \KeywordTok{struct}\NormalTok{ stat sb;}
+\NormalTok{    fstat(fd, \&sb); }\CommentTok{// Cette fonction nous permet de récupérer les informations sur le fichier}
+\CommentTok{(dans notre cas la taille)}
+    \DataTypeTok{int}\NormalTok{ *fichier = mmap(NULL, sb.st\_size, PROT\_READ | PROT\_WRITE, MAP\_SHARED, fd, }\DecValTok{0}\NormalTok{);}
+
+    \DataTypeTok{int}\NormalTok{ *fichier\_inverse = malloc(sb.st\_size); }\CommentTok{// nouvelle zone de mémoire pr le contenu inversé}
+    \DataTypeTok{int}\NormalTok{ i = sb.st\_size / }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{int}\NormalTok{) {-} }\DecValTok{1}\NormalTok{; }\CommentTok{// On commence à la fin du premier fichier}
+    \DataTypeTok{int}\NormalTok{ j = }\DecValTok{0}\NormalTok{; }\CommentTok{// On écrit au début du fichier à inverser}
+    \ControlFlowTok{while}\NormalTok{ (i \textgreater{}= }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{        fichier\_inverse[j] = fichier[i]; }\CommentTok{// copie des caractères inversés}
+\NormalTok{        i{-}{-};}
+\NormalTok{        j++;}
+\NormalTok{    \}}
+\NormalTok{    memcpy(fichier, fichier\_inverse, sb.st\_size); }\CommentTok{// copie de la nouvelle zone de mémoire dans le fichier}
+\NormalTok{    printf(}\StringTok{"Le contenu du fichier a été inversé avec succès}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    munmap(fichier, sb.st\_size); }\CommentTok{// libération de la mémoire}
+\NormalTok{    free(fichier\_inverse); }\CommentTok{// libération de la mémoire alouée dynamiquement}
+\NormalTok{    close(fd);}
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
