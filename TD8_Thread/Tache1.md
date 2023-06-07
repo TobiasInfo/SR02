@@ -43,8 +43,7 @@ En commençant à i^2, on est sur que chaque multiple antérieur a déjà été 
 
 3. La première boucle s'exécute jusqu'à sqrt(n) pour des raisons d'efficacité. L'objectif de cette boucle est de marquer tous les multiples des nombres premiers jusqu'à sqrt(n) comme non premiers.
 
-Si sqrt(n) n'est pas un entier, nous prenons la partie entière supérieure de sqrt(n) pour s'assurer de couvrir tous les multiples jusqu'à la valeur entière supérieure la plus proche de √n.
-
+Si sqrt(n) n'est pas un entier, nous prenons la partie entière inférieur de sqrt(n).
 
 Dans le cas où sqrt(n) est un entier, la première boucle s'exécute normalement de 2 à sqrt(n) inclus, couvrant ainsi tous les multiples des nombres premiers jusqu'à sqrt(n).
 
