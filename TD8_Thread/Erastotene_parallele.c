@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
-#define k 3
+#define k 7
 
 typedef struct
 {
