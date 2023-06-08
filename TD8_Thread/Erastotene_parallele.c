@@ -49,7 +49,7 @@ void Eratosthenes(unsigned long n, unsigned long *tab)
     {
         pthread_join(thread[i], NULL);
     }
-    free(thread);
+    free (thread);
 }
 
 void PrintTab(unsigned long n, unsigned long *tab)
