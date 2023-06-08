@@ -3,7 +3,7 @@
 program="./Erastotene"
 output_file="resultats_sequentielle.txt"
 compile="gcc Erastotene.c -o Erastotene -lm"
-values=(500000 1000000 2000000 4000000 1000000000)
+values=(500000 1000000 2000000 4000000)
 
 # Supprimer le fichier de résultats s'il existe déjà
 if [ -f "$output_file" ]; then
@@ -17,7 +17,7 @@ echo "---------------COMPILATION OK----------------"
 for value in "${values[@]}"; do
     echo "Exécution avec n = $value"
     echo "n = $value" >> "$output_file"
-    for (( i=1; i<=20; i++ )); do
+    for (( i=1; i<=30; i++ )); do
         echo "Essai $i"
         $program $value >> "$output_file"
     done

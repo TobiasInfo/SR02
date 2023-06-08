@@ -24,9 +24,19 @@ void *fonctionThread(void *argument)
         if (tab[t] == 1)
         {
             pthread_mutex_lock(arg->mutex);
-            for (unsigned long j = t * t; j <= n; j += t)
+            if(t == 2)
             {
-                tab[j] = 0;
+                for (unsigned long j = t * t; j <= n; j += t)
+                {
+                    tab[j] = 0;
+                }
+            }
+            else
+            {
+                for (unsigned long j = t * t; j <= n; j += 2*t)
+                {
+                    tab[j] = 0;
+                }
             }
             pthread_mutex_unlock(arg->mutex);
         }

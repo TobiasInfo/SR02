@@ -50,3 +50,27 @@ Dans le cas où sqrt(n) est un entier, la première boucle s'exécute normalemen
 L'objectif est de limiter le nombre d'itérations nécessaires, car après sqrt(n), nous n'avons plus besoin de vérifier les multiples des nombres premiers plus grands que √n, car ils ont déjà été traités lors des itérations précédentes.(Cette propriété est une propriété toujours vrai pour les nombres premiers.) Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 
 # TODO : Ajouter explication Marius
+
+
+# ChatGPT Optimisation de la dernière tache
+
+### 1ère optimisation
+Les deux cas distincts à traiter sont les suivants :
+
+    Cas spécial pour le nombre 2 : Le nombre 2 est le seul nombre premier pair. Comme tous les autres nombres pairs sont exclus d'être premiers, nous devons traiter le cas spécial du nombre 2 séparément. Par conséquent, nous devons effectuer la boucle interne avec un pas de 2 au lieu de i lorsque i est égal à 2.
+
+    Boucle interne pour les nombres impairs : Tous les autres nombres premiers sont impairs. Par conséquent, nous pouvons ignorer les nombres pairs lors de la boucle interne pour améliorer l'efficacité de l'algorithme. Nous effectuons donc la boucle interne avec un pas de 2i pour tous les nombres premiers impairs, en commençant par i^2.
+
+En résumé, le premier cas distinct est celui du nombre 2 où nous utilisons un pas de 2 dans la boucle interne, tandis que le deuxième cas distinct est celui des autres nombres premiers impairs, pour lesquels nous utilisons également un pas de 2i dans la boucle interne.
+
+### 2eme optimisation
+Pour réduire l'espace mémoire utilisé par l'algorithme, nous pouvons utiliser un tableau plus petit et ne stocker que les booléens pour les nombres impairs supérieurs à 3. Voici comment effectuer cette modification :
+
+    Initialisez un tableau isPrime de valeurs booléennes indexées de 0 à (n-2)/2, toutes initialisées à vrai. Le tableau isPrime sera moitié moins grand que le tableau A précédemment utilisé.
+    Pour i = 0, 1, 2, ..., (√n - 3)/2 :
+        Si isPrime[i] est vrai, cela signifie que le nombre k = 2 * i + 3 est premier.
+        Effectuez la boucle interne avec un pas de 2k, en commençant à j = (k^2 - 3) / 2 et augmentant j de k à chaque itération (j += k).
+        Marquez isPrime[j] comme faux.
+    Les nombres premiers seront les nombres impairs supérieurs à 2 (i.e., k = 2 * i + 3) pour lesquels isPrime[i] est vrai.
+
+Cette modification permet de réduire l'espace mémoire utilisé par le tableau en ne stockant que les booléens pour les nombres impairs supérieurs à 3. Ainsi, nous évitons de stocker les booléens pour les nombres pairs qui ne peuvent pas être premiers, ce qui réduit la taille du tableau et l'espace mémoire requis.

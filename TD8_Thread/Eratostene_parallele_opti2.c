@@ -19,12 +19,13 @@ void *fonctionThread(void *argument)
     unsigned long *tab = arg->tab;
     unsigned long i = arg->i;
     unsigned long n = arg->n;
-    for (unsigned long t = i; t <= arg->racine; t += k)
+    for (unsigned long t = i; t <= (arg->racine - 3) / 2; t += k)
     {
         if (tab[t] == 1)
         {
+            unsigned long l = 2 * t + 3;
             pthread_mutex_lock(arg->mutex);
-            for (unsigned long j = t * t; j <= n; j += t)
+            for (unsigned long j = (l * l - 3) / 2; j <= n / 2; j += l)
             {
                 tab[j] = 0;
             }
@@ -40,16 +41,16 @@ void Eratosthenes(unsigned long n, unsigned long *tab)
     unsigned long indexThread = 0;
     pthread_mutex_t mutex;
     pthread_mutex_init(&mutex, NULL);
-    
+
     for (int cpt = 0; cpt < k; cpt++)
     {
         ArgumentThread *arg = malloc(sizeof(ArgumentThread));
         arg->tab = tab;
-        arg->i = 2 + cpt;
+        arg->i = 0 + cpt;
         arg->n = n;
         arg->racine = sqrt(n);
         arg->mutex = &mutex;
-        
+
         pthread_create(&thread[indexThread], NULL, fonctionThread, arg);
         indexThread++;
     }
@@ -64,23 +65,27 @@ void Eratosthenes(unsigned long n, unsigned long *tab)
 void PrintTab(unsigned long n, unsigned long *tab)
 {
     // Affichage des nombres premiers
-    for (unsigned long i = 2; i <= n; i++)
+    printf("2 ");
+    for (unsigned long i = 0; i <= (n / 2) -1; i++)
     {
-        printf("%ld ", tab[i]);
+        if (tab[i] == 1)
+        {
+            unsigned long prime = 2 * i + 3;
+            printf("%ld ", prime);
+        }
     }
     printf("\n");
 }
 
 void PrintIndex(unsigned long n, unsigned long *tab)
 {
-    int cpt = 0;
-    // Affichage des nombres premiers
-    for (unsigned long i = 2; i <= n; i++)
+    int cpt = 1; // Initialisé à 1 pour inclure le nombre premier 2
+    for (unsigned long i = 0; i <= (n / 2) - 1; i++)
     {
+        printf("%ld ", tab[i]);
         if (tab[i] == 1)
         {
             cpt++;
-            // printf("%ld ", i);
         }
     }
     printf("%d\n", cpt);
@@ -98,11 +103,11 @@ int main(int argc, char *argv[])
 
     if (n > 1)
     {
-        unsigned long *tab = (unsigned long *)malloc((n + 1) * sizeof(unsigned long));
+        unsigned long *tab = (unsigned long *)malloc((n / 2 + 1) * sizeof(unsigned long));
         clock_t start, end;
         double temps_execution;
         // Initialisation du tableau
-        for (unsigned long i = 2; i <= n; i++)
+        for (unsigned long i = 0; i <= (n / 2); i++)
         {
             tab[i] = 1;
         }

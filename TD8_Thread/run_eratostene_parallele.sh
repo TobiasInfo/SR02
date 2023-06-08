@@ -2,7 +2,7 @@
 
 program="./Erastotene_parallele"
 compile="gcc Erastotene_parallele.c -o Erastotene_parallele -lm"
-output_file="resultats_parallele_k_7.txt"
+output_file="resultats_parallele_k_test_7.txt"
 values=(500000 1000000 2000000 4000000)
 
 # Supprimer le fichier de résultats s'il existe déjà
