@@ -1,8 +1,8 @@
 #!/bin/bash
 
-program="./Erastotene"
-output_file="resultats_sequentielle.txt"
-compile="gcc Erastotene.c -o Erastotene -lm"
+program="./Erastotene_parallele"
+compile="gcc Erastotene_parallele.c -o Erastotene_parallele -lm"
+output_file="resultats_parallele.txt"
 values=(500000 1000000 2000000 4000000)
 
 # Supprimer le fichier de résultats s'il existe déjà
@@ -10,10 +10,8 @@ if [ -f "$output_file" ]; then
     rm "$output_file"
 fi
 
-echo $compile
-$compile
-echo "---------------COMPILATION OK----------------" 
 # Exécuter le programme pour chaque valeur de n
+$compile
 for value in "${values[@]}"; do
     echo "Exécution avec n = $value"
     echo "n = $value" >> "$output_file"
