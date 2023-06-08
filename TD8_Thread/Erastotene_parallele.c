@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
+#define k 7
 
 typedef struct
 {
     unsigned long *tab;
     unsigned long i;
     unsigned long n;
+    unsigned long racine;
 } ArgumentThread;
 
 void *fonctionThread(void *argument)
@@ -16,33 +18,33 @@ void *fonctionThread(void *argument)
     unsigned long *tab = arg->tab;
     unsigned long i = arg->i;
     unsigned long n = arg->n;
-
-    for (unsigned long j = i * i; j <= n; j += i)
+    for (unsigned long t=i; t <= arg->racine; t+=k)
     {
-        tab[j] = 0;
+        if (tab[t] == 1)
+        {
+		for (unsigned long j = t * t; j <= n; j += t)
+    		{
+        		tab[j] = 0;
+    		}
+        }
     }
     pthread_exit(NULL);
 }
 
 void Eratosthenes(unsigned long n, unsigned long *tab)
 {
-    unsigned long racine = sqrt(n);
-    pthread_t *thread = malloc(sizeof(pthread_t) * racine);
+    pthread_t *thread = malloc(sizeof(pthread_t) * k);
     unsigned long indexThread = 0;
-
-    for (unsigned long i = 2; i <= racine; i++)
-    {
-        if (tab[i] == 1)
-        {
+    for (int cpt = 0; cpt < k ; cpt++){
             ArgumentThread *arg = malloc(sizeof(ArgumentThread));
             arg->tab = tab;
-            arg->i = i;
+            arg->i = 2+cpt;
             arg->n = n;
+            arg->racine = sqrt(n);
             pthread_create(&thread[indexThread], NULL, fonctionThread, arg);
             indexThread++;
-        }
     }
-
+   
     for (unsigned long i = 0; i < indexThread; i++)
     {
         pthread_join(thread[i], NULL);
