@@ -259,6 +259,9 @@ int main(int argc, char *argv[])
 
 ```
 \pagebreak
+/!\ GRAPH 1  
+\pagebreak 
+
 ## Tache 4: Interprétation des résultats
 
 La similarité des points pour 500 000 et 1 000 000 indique que les temps d'exécution sont assez uniformes, ce qui suggère que les différentes implémentations ne génèrent pas de performances nettement meilleures.  
@@ -580,6 +583,15 @@ int main(int argc, char *argv[])
     return 0;
 }
 ```
+\pagebreak
+/!\ GRAPH 2  
+
+\pagebreak 
+
+/!\ GRAPH 3  
+
+\pagebreak 
+ 
 ### Interprétation des résultats
 
 Ces deux algorithmes que nous avons utilisés ont permis de générer deux graphiques illustrant les résultats obtenus après l'application de différentes optimisations. En observant ces graphiques, nous constatons, comme précédemment, que les valeurs restent assez similaires pour les entrées de 500 000 et 1 000 000. Cependant, elles deviennent plus intéressantes et exploitables lorsque les entrées atteignent 2 000 000 et 4 000 000.  
