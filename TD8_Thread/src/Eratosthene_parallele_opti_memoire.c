@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
-#define k 7
+#define k 1
 
 typedef struct
 {
@@ -13,28 +13,6 @@ typedef struct
     pthread_mutex_t *mutex;
 } ArgumentThread;
 
-// void *fonctionThread(void *argument)
-// {
-//     ArgumentThread *arg = (ArgumentThread *)argument;
-//     unsigned long *tab = arg->tab;
-//     unsigned long i = arg->i;
-//     unsigned long n = arg->n;
-//     for (unsigned long t = i + 3; t <= (arg->racine); t += k)
-//     {
-//         printf("%lu\n", t);
-//         if (tab[t-3] == 1)
-//         {
-//             unsigned long l = 2 * t + 3;
-//             pthread_mutex_lock(arg->mutex);
-//             for (unsigned long j = (l * l - 3) / 2; j < n / 2; j += l)
-//             {
-//                 tab[j] = 0;
-//             }
-//             pthread_mutex_unlock(arg->mutex);
-//         }
-//     }
-//     pthread_exit(NULL);
-// }
 
 void *fonctionThread(void *argument)
 {
@@ -111,8 +89,6 @@ void PrintIndex(unsigned long n, unsigned long *tab)
             cpt++;
         }
     }
-    printf("CPT : %d\n", cpt);
-    printf("\n");
 }
 
 int main(int argc, char *argv[])

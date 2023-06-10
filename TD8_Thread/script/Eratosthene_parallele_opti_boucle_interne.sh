@@ -1,8 +1,8 @@
 #!/bin/bash
 
-program="./Erastotene_parallele"
-compile="gcc Erastotene_parallele.c -o Erastotene_parallele -lm"
-output_file="resultats_parallele_k_test_7.txt"
+program="../exe/Eratosthene_parallele_opti_boucle_interne"
+output_file="../resultats/Eratosthene_parallele_opti_boucle_interne_k_7.txt"
+compile="gcc ../src/Eratosthene_parallele_opti_boucle_interne.c -o ../exe/Eratosthene_parallele_opti_boucle_interne -lm"
 values=(500000 1000000 2000000 4000000)
 
 # Supprimer le fichier de résultats s'il existe déjà

@@ -93,8 +93,8 @@ void PrintIndex(unsigned long n, unsigned long *tab)
             // printf("%ld ", i);
         }
     }
-    printf("%d\n", cpt);
-    printf("\n");
+    // printf("%d\n", cpt);
+    // printf("\n");
 }
 
 int main(int argc, char *argv[])
