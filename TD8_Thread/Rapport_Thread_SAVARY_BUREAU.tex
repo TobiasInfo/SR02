@@ -1,0 +1,805 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{sr02-td-8-threads-crible-deratosthenes}{%
+\section{SR02 : TD 8 (Threads : Crible
+d'Eratosthenes)}\label{sr02-td-8-threads-crible-deratosthenes}}
+
+\hypertarget{tache-1}{%
+\subsection{Tache 1}\label{tache-1}}
+
+\hypertarget{duxe9rouler-lexuxe9cution-de-cette-algorithme-avec-n20}{%
+\subsubsection{Dérouler l'exécution de cette algorithme avec
+n=20}\label{duxe9rouler-lexuxe9cution-de-cette-algorithme-avec-n20}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\item
+  Initialisation du tableau\\
+  A = {[}Vrai, Vrai, Vrai, Vrai, Vrai, Vrai, Vrai, Vrai, Vrai, Vrai,
+  Vrai, Vrai, Vrai, Vrai, Vrai, Vrai, Vrai, Vrai, Vrai{]}
+\item
+  Boucle for sur i\\
+  Parcour des valeurs de i de 2 à \(\sqrt{20}\) , soit i = 2, 3, 4.
+\end{enumerate}
+
+i = 2:
+
+\begin{verbatim}
+A[2] est vrai,  
+On met à faux toutes les valeurs de j = 4, 6, 8, 10, 12, 14, 16, 18, 20  
+dans le tableau A.  
+Le tableau A devient : [Vrai, Vrai, Faux, Vrai, Faux, Vrai, Faux,  
+Vrai, Faux, Vrai, Faux, Vrai, Faux, Vrai, Faux, Vrai, Faux, Vrai, Faux]  
+\end{verbatim}
+
+i = 3:
+
+\begin{verbatim}
+A[3] est vrai,  
+On met à faux toutes les valeurs de j = 9, 12, 15, 18 dans le tableau A.  
+Le tableau A devient : [Vrai, Vrai, Faux, Vrai, Faux, Vrai, Faux, Faux,  
+Faux, Vrai, Faux, Vrai, Faux, Faux, Faux, Vrai, Faux, Vrai, Faux]  
+\end{verbatim}
+
+i = 4:
+
+\begin{verbatim}
+A[4] est faux, on passe à l'itération suivante.  
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Résultat final\\
+  Après avoir parcouru toutes les valeurs de i, le tableau A contient
+  les informations sur les nombres premiers jusqu'à 20. Les indices pour
+  lesquels A{[}i{]} est vrai correspondent aux nombres premiers.
+\end{enumerate}
+
+Le tableau A final est le suivant : {[}Vrai, Vrai, Faux, Vrai, Faux,
+Vrai, Faux, Faux, Faux, Vrai, Faux, Vrai, Faux, Faux, Faux, Vrai, Faux,
+Vrai, Faux{]}
+
+Donc, les nombres premiers jusqu'à 20 sont : 2, 3, 5, 7, 11, 13, 17, 19.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  La boucle interne commence à \(i^2\) au lieu de 0 ou i pour des
+  raisons d'efficacité.
+\end{enumerate}
+
+L'algorithme utilise le crible d'Ératosthène pour trouver les nombres
+premiers jusqu'à n.~L'idée du crible d'Ératosthène est que tous les
+multiples d'un nombre ne sont pas premiers, ils peuvent donc être
+supprimés. Ainsi, au lieu de parcourir tous les multiples de i, la
+boucle interne commence à \(i^2\) pour éliminer tous les multiples
+précédents qui ont déjà été marqués comme non premiers par des valeurs
+de i plus petites.
+
+Supposons que i soit un nombre premier. Si nous commençons à i ou à une
+valeur inférieure à \(i^2\), on passe sur des multiples de nombres
+premiers précédents, ce qui serait redondant. Par exemple, si i = 3, en
+commencant à \(3^2\) = 9 on ne passe pas par 6 (multiple de 2) et 3
+(multiple de 3), car ils ont déjà été testés précédemment.
+
+En commençant à \(i^2\), on est sur que chaque multiple antérieur a déjà
+été marqué comme non premier, ce qui permet de réduire le nombre
+d'itérations. Ce départ à \(i^2\) constitue donc principalement une
+optimisation de l'algorithme puisque les itérations avant \(i^2\) ne
+seraient pas nécéssaires.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  La première boucle s'exécute jusqu'à \(\sqrt{n}\) pour des raisons
+  d'efficacité. L'objectif de cette boucle est de marquer tous les
+  multiples des nombres premiers jusqu'à \(\sqrt{n}\) comme non
+  premiers.
+\end{enumerate}
+
+Si \(\sqrt{n}\) n'est pas un entier, nous prenons la partie entière
+inférieur de \(\sqrt{n}\).
+
+Dans le cas où \(\sqrt{n}\) est un entier, la première boucle s'exécute
+normalement de 2 à \(\sqrt{n}\) inclus, couvrant ainsi tous les
+multiples des nombres premiers jusqu'à \(\sqrt{n}\).
+
+L'objectif est de limiter le nombre d'itérations nécessaires, car après
+\(\sqrt{n}\), nous n'avons plus besoin de vérifier les multiples des
+nombres premiers plus grands que \(\sqrt{n}\), car ils ont déjà été
+traités lors des itérations précédentes.(Cette propriété est une
+propriété toujours vrai pour les nombres premiers.)
+
+Lorsque nous cherchons tous les nombres premiers inférieurs ou égale à
+N, nous pouvons effectivement itérer sur les entiers i de 2 à N.
+
+Cependant, il n'est pas nécessaire de vérifier tous les nombres jusqu'à
+N. Il suffit de vérifier jusqu'à la racine carrée de N. Cela est dû au
+fait que si un nombre non premier a un facteur qui est plus grand que sa
+racine carrée, il aurait déjà été multiplié par un autre facteur plus
+petit qui est inférieur à sa racine carrée.
+
+Par conséquent, en vérifiant seulement jusqu'à la racine carrée de N,
+nous couvrons tous les cas et nous évitons les tests redondants.
+
+``D'après le théorème des diviseurs premiers, si n n'est divisible par
+aucun des nombres premiers inférieur ou égaux à sa racine carrée, on
+peut affirmer qu'il est premier.''
+
+Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
+
+\hypertarget{tache-2}{%
+\subsection{Tache 2}\label{tache-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}math.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}time.h\textgreater{}}
+
+\DataTypeTok{void}\NormalTok{ Eratosthenes(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab) \{}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++) \{}
+\NormalTok{        tab[i] = }\DecValTok{1}\NormalTok{;}
+\NormalTok{    \}}
+
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ racine = $\textbackslash{}sqrt\{n\}$;}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= racine; i++) \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{) \{}
+            \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = i * i; j \textless{}= n; j += i) \{}
+\NormalTok{                tab[j] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{            \}}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ PrintTab(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab) \{}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++) \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{) \{}
+\NormalTok{            printf(}\StringTok{"\%lu "}\NormalTok{, i);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ **argv) \{}
+    \ControlFlowTok{if}\NormalTok{(argc != }\DecValTok{2}\NormalTok{) \{}
+\NormalTok{        printf(}\StringTok{"Usage: \%s \textless{}n\textgreater{}}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
+        \ControlFlowTok{return} \DecValTok{1}\NormalTok{;}
+\NormalTok{    \}}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = atol(argv[}\DecValTok{1}\NormalTok{]);}
+
+    \ControlFlowTok{if}\NormalTok{ (n \textgreater{} }\DecValTok{1}\NormalTok{) \{}
+        \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc((n+}\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
+\NormalTok{        clock\_t start, end;}
+        \DataTypeTok{double}\NormalTok{ temps\_execution;}
+
+\NormalTok{        start = clock();}
+\NormalTok{        Eratosthenes(n, tab);}
+\NormalTok{        end = clock();}
+
+\NormalTok{        temps\_execution = ((}\DataTypeTok{double}\NormalTok{) (end {-} start)) / CLOCKS\_PER\_SEC;}
+\NormalTok{        printf(}\StringTok{"\%f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, temps\_execution);}
+        \CommentTok{// PrintTab(100, tab);}
+
+\NormalTok{        free(tab);}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{        printf(}\StringTok{"n doit être supérieur à 1.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    \}}
+
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tache-3}{%
+\subsection{Tache 3}\label{tache-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}math.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}pthread.h\textgreater{}}
+\PreprocessorTok{\#define k 7}
+
+\KeywordTok{typedef} \KeywordTok{struct}
+\NormalTok{\{}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ racine;}
+\NormalTok{    pthread\_mutex\_t *mutex;}
+\NormalTok{\} ArgumentThread;}
+
+\DataTypeTok{void}\NormalTok{ *fonctionThread(}\DataTypeTok{void}\NormalTok{ *argument)}
+\NormalTok{\{}
+\NormalTok{    ArgumentThread *arg = (ArgumentThread *)argument;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = arg{-}\textgreater{}tab;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = arg{-}\textgreater{}i;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = arg{-}\textgreater{}n;}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ t = i; t \textless{}= arg{-}\textgreater{}racine; t += k)}
+\NormalTok{    \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[t] == }\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            pthread\_mutex\_lock(arg{-}\textgreater{}mutex);}
+            \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = t * t; j \textless{}= n; j += t)}
+\NormalTok{            \{}
+\NormalTok{                tab[j] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{            \}}
+\NormalTok{            pthread\_mutex\_unlock(arg{-}\textgreater{}mutex);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    pthread\_exit(NULL);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ Eratosthenes(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+\NormalTok{    pthread\_t *thread = malloc(}\KeywordTok{sizeof}\NormalTok{(pthread\_t) * k);}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ indexThread = }\DecValTok{0}\NormalTok{;}
+\NormalTok{    pthread\_mutex\_t mutex;}
+\NormalTok{    pthread\_mutex\_init(\&mutex, NULL);}
+    
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{; cpt \textless{} k; cpt++)}
+\NormalTok{    \{}
+\NormalTok{        ArgumentThread *arg = malloc(}\KeywordTok{sizeof}\NormalTok{(ArgumentThread));}
+\NormalTok{        arg{-}\textgreater{}tab = tab;}
+\NormalTok{        arg{-}\textgreater{}i = }\DecValTok{2}\NormalTok{ + cpt;}
+\NormalTok{        arg{-}\textgreater{}n = n;}
+\NormalTok{        arg{-}\textgreater{}racine = $\textbackslash{}sqrt\{n\}$;}
+\NormalTok{        arg{-}\textgreater{}mutex = \&mutex;}
+        
+\NormalTok{        pthread\_create(\&thread[indexThread], NULL, fonctionThread, arg);}
+\NormalTok{        indexThread++;}
+\NormalTok{    \}}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} indexThread; i++)}
+\NormalTok{    \{}
+\NormalTok{        pthread\_join(thread[i], NULL);}
+\NormalTok{    \}}
+\NormalTok{    free(thread);}
+\NormalTok{    pthread\_mutex\_destroy(\&mutex);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ PrintTab(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+    \CommentTok{// Affichage des nombres premiers}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++)}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"\%ld "}\NormalTok{, tab[i]);}
+\NormalTok{    \}}
+\NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ PrintIndex(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+    \DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{;}
+    \CommentTok{// Affichage des nombres premiers}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++)}
+\NormalTok{    \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            cpt++;}
+            \CommentTok{// printf("\%ld ", i);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    \CommentTok{// printf("\%d\textbackslash{}n", cpt);}
+    \CommentTok{// printf("\textbackslash{}n");}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ *argv[])}
+\NormalTok{\{}
+    \ControlFlowTok{if}\NormalTok{ (argc != }\DecValTok{2}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"Usage: \%s n}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
+        \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{    \}}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = atol(argv[}\DecValTok{1}\NormalTok{]);}
+
+    \ControlFlowTok{if}\NormalTok{ (n \textgreater{} }\DecValTok{1}\NormalTok{)}
+\NormalTok{    \{}
+        \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc((n + }\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
+\NormalTok{        clock\_t start, end;}
+        \DataTypeTok{double}\NormalTok{ temps\_execution;}
+        \CommentTok{// Initialisation du tableau}
+        \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++)}
+\NormalTok{        \{}
+\NormalTok{            tab[i] = }\DecValTok{1}\NormalTok{;}
+\NormalTok{        \}}
+\NormalTok{        start = clock();}
+\NormalTok{        Eratosthenes(n, tab);}
+\NormalTok{        end = clock();}
+\NormalTok{        temps\_execution = ((}\DataTypeTok{double}\NormalTok{)(end {-} start)) / CLOCKS\_PER\_SEC;}
+\NormalTok{        printf(}\StringTok{"\%f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, temps\_execution);}
+
+\NormalTok{        PrintIndex(n, tab);}
+        \CommentTok{// PrintTab(n, tab);}
+\NormalTok{        free(tab);}
+\NormalTok{    \}}
+    \ControlFlowTok{else}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"n doit être supérieur à 1.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    \}}
+
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tache-4-interpruxe9tation-des-ruxe9sultats}{%
+\subsection{Tache 4: Interprétation des
+résultats}\label{tache-4-interpruxe9tation-des-ruxe9sultats}}
+
+La similarité des points pour 500 000 et 1 000 000 indique que les temps
+d'exécution sont assez uniformes, ce qui suggère que les différentes
+implémentations ne génèrent pas de performances nettement meilleures.
+
+À partir de la valeur 2 000 000, une dispersion des valeurs devient
+apparente, ce qui met en évidence les différences d'implémentation de
+manière plus marquée. On peut observer deux groupes principaux de
+valeurs. Le premier groupe se situe autour de 0,030 secondes, tandis que
+le second groupe se situe autour de 0,036 secondes.
+
+Le premier groupe est constitué des implémentations utilisant des
+threads pour les valeurs de k égales à 1, 2, 3, 4 et 6. Le second groupe
+comprend l'implémentation séquentielle ainsi que celle utilisant des
+threads pour les valeurs de k égales à 5 et 7.
+
+En utilisant la valeur 4 000 000, ces résultats précédents sont
+confirmés, et la valeur optimale de k (k=3) est obtenue. On observe que
+pour les valeurs de k égales à 1, 2, 4 et 6, les temps d'exécution
+restent assez proches. Ainsi, les différences de nombre de threads n'ont
+pas d'impact significatif sur le temps d'exécution des programmes.
+
+\hypertarget{intervalle-de-confiance}{%
+\subsubsection{Intervalle de confiance}\label{intervalle-de-confiance}}
+
+Afin de calculer l'intervalle de confiance sur ces valeurs, nous pouvons
+poser \(X\) la variable aléatoire repésentant le temps d'exécution du
+programme. Ensuite, nous devons calculer la moyenne de x
+(\(\overline{x}\)) ainsi que son équart type (\(\sigma\)).\\
+Nous pouvons poser un niveau de confiance \(\alpha^{*}\).\\
+Dans notre cas, on peut prendre un niveau de confiance
+\(\alpha^{*} = 95%
+\).\\
+On pose :\\
+Le quantile d'une loi de student à 1 degré de liberté au niveau
+\(\alpha^{*}\) : \(t_1,\alpha^{*}\).\\
+Le nombre de valeurs : \(n\).\\
+L'intervalle de confiance est donné par la formule :\\
+\begin{equation}
+IC = [\overline{x} + \frac{t_1,\alpha^{*}* \sigma }{ \sqrt{n}}, \overline{x} + \frac{t_1,\alpha^{*} * \sigma }{ \sqrt{n}}]
+\end{equation}
+
+\hypertarget{tache-5}{%
+\subsection{Tache 5}\label{tache-5}}
+
+\hypertarget{accuxe9luxe9ration-de-la-boucle-interne}{%
+\subsubsection{Accélération de la boucle
+interne}\label{accuxe9luxe9ration-de-la-boucle-interne}}
+
+Les deux cas distincts à traiter sont les suivants :
+
+Cas spécial pour le nombre 2 : Le nombre 2 est le seul nombre premier
+pair. Comme tous les autres nombres pairs sont exclus d'être premiers,
+nous devons traiter le cas spécial du nombre 2 séparément. Par
+conséquent, nous devons effectuer la boucle interne avec un pas de 2 au
+lieu de i lorsque i est égal à 2.
+
+Boucle interne pour les nombres impairs : Tous les autres nombres
+premiers sont impairs. Par conséquent, nous pouvons ignorer les nombres
+pairs lors de la boucle interne pour améliorer l'efficacité de
+l'algorithme. Nous effectuons donc la boucle interne avec un pas de 2i
+pour tous les nombres premiers impairs, en commençant par \(i^2\).
+
+En résumé, le premier cas distinct est celui du nombre 2 où nous
+utilisons un pas de 2 dans la boucle interne, tandis que le deuxième cas
+distinct est celui des autres nombres premiers impairs, pour lesquels
+nous utilisons également un pas de 2i dans la boucle interne.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}math.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}pthread.h\textgreater{}}
+\PreprocessorTok{\#define k 7}
+
+\KeywordTok{typedef} \KeywordTok{struct}
+\NormalTok{\{}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ racine;}
+\NormalTok{    pthread\_mutex\_t *mutex;}
+\NormalTok{\} ArgumentThread;}
+
+\DataTypeTok{void}\NormalTok{ *fonctionThread(}\DataTypeTok{void}\NormalTok{ *argument)}
+\NormalTok{\{}
+\NormalTok{    ArgumentThread *arg = (ArgumentThread *)argument;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = arg{-}\textgreater{}tab;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = arg{-}\textgreater{}i;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = arg{-}\textgreater{}n;}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ t = i; t \textless{}= arg{-}\textgreater{}racine; t += k)}
+\NormalTok{    \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[t] == }\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            pthread\_mutex\_lock(arg{-}\textgreater{}mutex);}
+            \ControlFlowTok{if}\NormalTok{(t == }\DecValTok{2}\NormalTok{)}
+\NormalTok{            \{}
+                \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = t * t; j \textless{}= n; j += t)}
+\NormalTok{                \{}
+\NormalTok{                    tab[j] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{                \}}
+\NormalTok{            \}}
+            \ControlFlowTok{else}
+\NormalTok{            \{}
+                \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = t * t; j \textless{}= n; j += }\DecValTok{2}\NormalTok{*t)}
+\NormalTok{                \{}
+\NormalTok{                    tab[j] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{                \}}
+\NormalTok{            \}}
+\NormalTok{            pthread\_mutex\_unlock(arg{-}\textgreater{}mutex);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    pthread\_exit(NULL);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ Eratosthenes(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+\NormalTok{    pthread\_t *thread = malloc(}\KeywordTok{sizeof}\NormalTok{(pthread\_t) * k);}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ indexThread = }\DecValTok{0}\NormalTok{;}
+\NormalTok{    pthread\_mutex\_t mutex;}
+\NormalTok{    pthread\_mutex\_init(\&mutex, NULL);}
+    
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{; cpt \textless{} k; cpt++)}
+\NormalTok{    \{}
+\NormalTok{        ArgumentThread *arg = malloc(}\KeywordTok{sizeof}\NormalTok{(ArgumentThread));}
+\NormalTok{        arg{-}\textgreater{}tab = tab;}
+\NormalTok{        arg{-}\textgreater{}i = }\DecValTok{2}\NormalTok{ + cpt;}
+\NormalTok{        arg{-}\textgreater{}n = n;}
+\NormalTok{        arg{-}\textgreater{}racine = $\textbackslash{}sqrt\{n\}$;}
+\NormalTok{        arg{-}\textgreater{}mutex = \&mutex;}
+        
+\NormalTok{        pthread\_create(\&thread[indexThread], NULL, fonctionThread, arg);}
+\NormalTok{        indexThread++;}
+\NormalTok{    \}}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} indexThread; i++)}
+\NormalTok{    \{}
+\NormalTok{        pthread\_join(thread[i], NULL);}
+\NormalTok{    \}}
+\NormalTok{    free(thread);}
+\NormalTok{    pthread\_mutex\_destroy(\&mutex);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ PrintTab(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+    \CommentTok{// Affichage des nombres premiers}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++)}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"\%ld "}\NormalTok{, tab[i]);}
+\NormalTok{    \}}
+\NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ PrintIndex(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+    \DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{;}
+    \CommentTok{// Affichage des nombres premiers}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++)}
+\NormalTok{    \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            cpt++;}
+            \CommentTok{// printf("\%ld ", i);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    \CommentTok{// printf("\%d\textbackslash{}n", cpt);}
+    \CommentTok{// printf("\textbackslash{}n");}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ *argv[])}
+\NormalTok{\{}
+    \ControlFlowTok{if}\NormalTok{ (argc != }\DecValTok{2}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"Usage: \%s n}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
+        \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{    \}}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = atol(argv[}\DecValTok{1}\NormalTok{]);}
+
+    \ControlFlowTok{if}\NormalTok{ (n \textgreater{} }\DecValTok{1}\NormalTok{)}
+\NormalTok{    \{}
+        \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc((n + }\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
+\NormalTok{        clock\_t start, end;}
+        \DataTypeTok{double}\NormalTok{ temps\_execution;}
+        \CommentTok{// Initialisation du tableau}
+        \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++)}
+\NormalTok{        \{}
+\NormalTok{            tab[i] = }\DecValTok{1}\NormalTok{;}
+\NormalTok{        \}}
+\NormalTok{        start = clock();}
+\NormalTok{        Eratosthenes(n, tab);}
+\NormalTok{        end = clock();}
+\NormalTok{        temps\_execution = ((}\DataTypeTok{double}\NormalTok{)(end {-} start)) / CLOCKS\_PER\_SEC;}
+\NormalTok{        printf(}\StringTok{"\%f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, temps\_execution);}
+
+\NormalTok{        PrintIndex(n, tab);}
+        \CommentTok{// PrintTab(n, tab);}
+\NormalTok{        free(tab);}
+\NormalTok{    \}}
+    \ControlFlowTok{else}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"n doit être supérieur à 1.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    \}}
+
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ruxe9duction-de-lespace-muxe9moire}{%
+\subsubsection{Réduction de l'espace
+mémoire}\label{ruxe9duction-de-lespace-muxe9moire}}
+
+Pour réduire l'espace mémoire utilisé par l'algorithme, nous pouvons
+utiliser un tableau plus petit et ne stocker que les booléens pour les
+nombres impairs supérieurs à 3. Voici comment effectuer cette
+modification :
+
+Initialisez un tableau isPrime de valeurs booléennes indexées de 0 à
+\(\frac{n - 2}{2}\), toutes initialisées à vrai. Le tableau isPrime sera
+moitié moins grand que le tableau A précédemment utilisé.\\
+Pour i = 0, 1, 2, \ldots, \(\frac{\sqrt{n} - 3}{2}\):\\
+Si isPrime{[}i{]} est vrai, cela signifie que le nombre \(k = 2i + 3\)
+est premier.\\
+Effectuez la boucle interne avec un pas de 2k, en commençant à
+\(j = \frac{k^2 - 3}{2}\) et augmentant j de k à chaque itération
+(\(j += k\)).\\
+Marquez isPrime{[}j{]} comme faux.\\
+Les nombres premiers seront les nombres impairs supérieurs à 2 (i.e.,
+\(k = 2i + 3\)) pour lesquels isPrime{[}i{]} est vrai.
+
+Cette modification permet de réduire l'espace mémoire utilisé par le
+tableau en ne stockant que les booléens pour les nombres impairs
+supérieurs à 3. Ainsi, nous évitons de stocker les booléens pour les
+nombres pairs qui ne peuvent pas être premiers, ce qui réduit la taille
+du tableau et l'espace mémoire requis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}math.h\textgreater{}}
+\PreprocessorTok{\#include }\ImportTok{\textless{}pthread.h\textgreater{}}
+\PreprocessorTok{\#define k 1}
+
+\KeywordTok{typedef} \KeywordTok{struct}
+\NormalTok{\{}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ racine;}
+\NormalTok{    pthread\_mutex\_t *mutex;}
+\NormalTok{\} ArgumentThread;}
+
+
+\DataTypeTok{void}\NormalTok{ *fonctionThread(}\DataTypeTok{void}\NormalTok{ *argument)}
+\NormalTok{\{}
+\NormalTok{    ArgumentThread *arg = (ArgumentThread *)argument;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = arg{-}\textgreater{}tab;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = arg{-}\textgreater{}i;}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = arg{-}\textgreater{}n;}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ t = i; t \textless{}= (arg{-}\textgreater{}racine); t += k)}
+\NormalTok{    \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[t] == }\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+            \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ l = }\DecValTok{2}\NormalTok{ * t + }\DecValTok{3}\NormalTok{;}
+\NormalTok{            pthread\_mutex\_lock(arg{-}\textgreater{}mutex);}
+            \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = (l * l {-} }\DecValTok{3}\NormalTok{) / }\DecValTok{2}\NormalTok{; j \textless{} n / }\DecValTok{2}\NormalTok{ {-} }\DecValTok{1}\NormalTok{; j += l)}
+\NormalTok{            \{}
+\NormalTok{                tab[j] = }\DecValTok{0}\NormalTok{;}
+\NormalTok{            \}}
+\NormalTok{            pthread\_mutex\_unlock(arg{-}\textgreater{}mutex);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    pthread\_exit(NULL);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ Eratosthenes(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+\NormalTok{    pthread\_t *thread = malloc(}\KeywordTok{sizeof}\NormalTok{(pthread\_t) * k);}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ indexThread = }\DecValTok{0}\NormalTok{;}
+\NormalTok{    pthread\_mutex\_t mutex;}
+\NormalTok{    pthread\_mutex\_init(\&mutex, NULL);}
+
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{; cpt \textless{} k; cpt++)}
+\NormalTok{    \{}
+\NormalTok{        ArgumentThread *arg = malloc(}\KeywordTok{sizeof}\NormalTok{(ArgumentThread));}
+\NormalTok{        arg{-}\textgreater{}tab = tab;}
+\NormalTok{        arg{-}\textgreater{}i = }\DecValTok{0}\NormalTok{ + cpt;}
+\NormalTok{        arg{-}\textgreater{}n = n;}
+\NormalTok{        arg{-}\textgreater{}racine = $\textbackslash{}sqrt\{n\}$;}
+\NormalTok{        arg{-}\textgreater{}mutex = \&mutex;}
+
+\NormalTok{        pthread\_create(\&thread[indexThread], NULL, fonctionThread, arg);}
+\NormalTok{        indexThread++;}
+\NormalTok{    \}}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{int}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} indexThread; i++)}
+\NormalTok{    \{}
+\NormalTok{        pthread\_join(thread[i], NULL);}
+\NormalTok{    \}}
+\NormalTok{    free(thread);}
+\NormalTok{    pthread\_mutex\_destroy(\&mutex);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ PrintTab(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+    \CommentTok{// Affichage des nombres premiers}
+\NormalTok{    printf(}\StringTok{"2 "}\NormalTok{);}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} (n / }\DecValTok{2}\NormalTok{) {-}}\DecValTok{1}\NormalTok{; i++)}
+\NormalTok{    \{}
+        \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+            \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ prime = }\DecValTok{2}\NormalTok{ * i + }\DecValTok{3}\NormalTok{;}
+\NormalTok{            printf(}\StringTok{"\%ld "}\NormalTok{, prime);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{\}}
+
+\DataTypeTok{void}\NormalTok{ PrintIndex(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
+\NormalTok{\{}
+    \DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{1}\NormalTok{; }\CommentTok{// Initialisé à 1 pour inclure le nombre premier 2}
+    \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} (n / }\DecValTok{2}\NormalTok{) {-} }\DecValTok{1}\NormalTok{; i++)}
+\NormalTok{    \{}
+        \CommentTok{// printf("\%ld ", tab[i]);}
+        \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{)}
+\NormalTok{        \{}
+\NormalTok{            cpt++;}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+
+\DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ *argv[])}
+\NormalTok{\{}
+    \ControlFlowTok{if}\NormalTok{ (argc != }\DecValTok{2}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"Usage: \%s n}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
+        \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{    \}}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = atol(argv[}\DecValTok{1}\NormalTok{]);}
+
+    \ControlFlowTok{if}\NormalTok{ (n \textgreater{} }\DecValTok{1}\NormalTok{)}
+\NormalTok{    \{}
+        \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc(((n / }\DecValTok{2}\NormalTok{) {-} }\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
+\NormalTok{        clock\_t start, end;}
+        \DataTypeTok{double}\NormalTok{ temps\_execution;}
+        \CommentTok{// Initialisation du tableau}
+        \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} (n / }\DecValTok{2}\NormalTok{) {-} }\DecValTok{1}\NormalTok{; i++)}
+\NormalTok{        \{}
+\NormalTok{            tab[i] = }\DecValTok{1}\NormalTok{;}
+\NormalTok{        \}}
+\NormalTok{        start = clock();}
+\NormalTok{        Eratosthenes(n, tab);}
+\NormalTok{        end = clock();}
+\NormalTok{        temps\_execution = ((}\DataTypeTok{double}\NormalTok{)(end {-} start)) / CLOCKS\_PER\_SEC;}
+\NormalTok{        printf(}\StringTok{"\%f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, temps\_execution);}
+
+\NormalTok{        PrintIndex(n, tab);}
+        \CommentTok{// PrintTab(n, tab);}
+\NormalTok{        free(tab);}
+\NormalTok{    \}}
+    \ControlFlowTok{else}
+\NormalTok{    \{}
+\NormalTok{        printf(}\StringTok{"n doit être supérieur à 1.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
+\NormalTok{    \}}
+
+    \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{interpruxe9tation-des-ruxe9sultats}{%
+\subsubsection{Interprétation des
+résultats}\label{interpruxe9tation-des-ruxe9sultats}}
+
+\end{document}
