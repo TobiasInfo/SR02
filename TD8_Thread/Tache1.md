@@ -588,11 +588,6 @@ int main(int argc, char *argv[])
 ```
 \pagebreak
 /!\ GRAPH 2  
-
-\pagebreak 
-
-/!\ GRAPH 3  
-
 \pagebreak 
  
 ### Interprétation des résultats

@@ -3,7 +3,19 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-]{article}
+    ]{article}
+    \usepackage[a4paper,top=2cm,bottom=1.5cm,left=2cm,right=2cm,marginparwidth=1.5cm]{geometry}
+    \usepackage{graphicx}
+    % \usepackage[french]{babel}
+    \usepackage{fancyhdr}
+    \usepackage{setspace}
+    \usepackage[font=small, labelfont=bf]{caption}
+    \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+    \usepackage{incgraph}
+    \usepackage{algorithm}
+    \usepackage{algorithmic}
+    \usepackage[ruled,vlined]{algorithm2e}
+    \usepackage{pdfpages}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -82,14 +94,71 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 
-\author{}
-\date{}
+
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\setlength\headheight{15pt}
+ \setlength{\marginparwidth}{2cm}
+\usepackage[
+    left = \flqq{},% 
+    right = \frqq{},% 
+    leftsub = \flq{},% 
+    rightsub = \frq{} %
+    ]{dirtytalk}
+    \setlength\headheight{15pt}
+    
+    % Ligne de Haut de page (Nom + UV)
+    \fancyhead[L]{SAVARY Tobias BUREAU Marius UTC - GI02} 
+    \fancyhead[R]{SR02 - Rapport Threads}
+
+    % Bas de page (Nomero de page + UTC)
+    \fancyfoot[R]{\thepage}
+    \fancyfoot[L]{Université de Technologie de Compiègne}
+     \setlength {\marginparwidth}{2cm}
+     \renewcommand{\footrulewidth}{.5pt}
 
 \begin{document}
 
-\hypertarget{sr02-td-8-threads-crible-deratosthenes}{%
-\section{SR02 : TD 8 (Threads : Crible
-d'Eratosthenes)}\label{sr02-td-8-threads-crible-deratosthenes}}
+\title{ 
+   \begin{center}
+           \includegraphics[width=5cm]{img/SR02.jpg} \hspace*{1cm}
+           \includegraphics[width=9cm]{img/logo_UTC.png} \\ [2cm]
+   \end{center}
+		\HRule{2pt} \\
+
+    % Titre du Rapport
+		\LARGE \textbf{Rapport TD8:\\Threads \\ Crible d’Eratosthenes} 
+		\HRule{2pt} \\ [5.5cm]
+
+
+		\normalsize  
+    % Nom de l'auteur
+        \author{
+            Tobias SAVARY \\[0.5cm]
+            Marius BUREAU \\[0.5cm]
+           \\[1cm]
+        }
+		}
+    % Année universitaire
+		\maketitle
+        \begin{center}
+            Année universitaire 2022/2023
+        \end{center}
+\pagebreak
+
+% Table des matières 
+\tableofcontents
+
+\pagebreak
+
+% \hypertarget{sr02-td-8-threads-crible-deratosthenes}{%
+% \section{SR02 : TD 8 (Threads : Crible
+% d'Eratosthenes)}\label{sr02-td-8-threads-crible-deratosthenes}}
 
 \hypertarget{tache-1}{%
 \subsection{Tache 1}\label{tache-1}}
@@ -244,17 +313,13 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++) \{}
 \NormalTok{        tab[i] = }\DecValTok{1}\NormalTok{;}
 \NormalTok{    \}}
-
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ racine = $\textbackslash{}sqrt\{n\}$;}
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= racine; i++) \{}
         \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{) \{}
             \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = i * i; j \textless{}= n; j += i) \{}
 \NormalTok{                tab[j] = }\DecValTok{0}\NormalTok{;}
 \NormalTok{            \}}
-\NormalTok{        \}}
-\NormalTok{    \}}
-\NormalTok{\}}
-
+\NormalTok{    \}\}\}}
 \DataTypeTok{void}\NormalTok{ PrintTab(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab) \{}
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++) \{}
         \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{) \{}
@@ -263,42 +328,34 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \NormalTok{    \}}
 \NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
 \NormalTok{\}}
-
 \DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ **argv) \{}
     \ControlFlowTok{if}\NormalTok{(argc != }\DecValTok{2}\NormalTok{) \{}
 \NormalTok{        printf(}\StringTok{"Usage: \%s \textless{}n\textgreater{}}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
         \ControlFlowTok{return} \DecValTok{1}\NormalTok{;}
 \NormalTok{    \}}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = atol(argv[}\DecValTok{1}\NormalTok{]);}
-
     \ControlFlowTok{if}\NormalTok{ (n \textgreater{} }\DecValTok{1}\NormalTok{) \{}
         \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc((n+}\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
 \NormalTok{        clock\_t start, end;}
         \DataTypeTok{double}\NormalTok{ temps\_execution;}
-
 \NormalTok{        start = clock();}
 \NormalTok{        Eratosthenes(n, tab);}
 \NormalTok{        end = clock();}
-
 \NormalTok{        temps\_execution = ((}\DataTypeTok{double}\NormalTok{) (end {-} start)) / CLOCKS\_PER\_SEC;}
 \NormalTok{        printf(}\StringTok{"\%f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, temps\_execution);}
         \CommentTok{// PrintTab(100, tab);}
-
 \NormalTok{        free(tab);}
 \NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
 \NormalTok{        printf(}\StringTok{"n doit être supérieur à 1.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
 \NormalTok{    \}}
-
     \ControlFlowTok{return} \DecValTok{0}\NormalTok{;}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
-
 \pagebreak
 
 \hypertarget{tache-3}{%
 \subsection{Tache 3}\label{tache-3}}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \PreprocessorTok{\#include }\ImportTok{\textless{}stdio.h\textgreater{}}
@@ -336,14 +393,17 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \NormalTok{    \}}
 \NormalTok{    pthread\_exit(NULL);}
 \NormalTok{\}}
-
+\end{Highlighting}
+\end{Shaded}
+\begin{Shaded}
+    \begin{Highlighting}[]
 \DataTypeTok{void}\NormalTok{ Eratosthenes(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
 \NormalTok{\{}
 \NormalTok{    pthread\_t *thread = malloc(}\KeywordTok{sizeof}\NormalTok{(pthread\_t) * k);}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ indexThread = }\DecValTok{0}\NormalTok{;}
 \NormalTok{    pthread\_mutex\_t mutex;}
 \NormalTok{    pthread\_mutex\_init(\&mutex, NULL);}
-    
+
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{; cpt \textless{} k; cpt++)}
 \NormalTok{    \{}
 \NormalTok{        ArgumentThread *arg = malloc(}\KeywordTok{sizeof}\NormalTok{(ArgumentThread));}
@@ -428,7 +488,6 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
-
 \pagebreak
 
 /!~GRAPH 1\\
@@ -437,6 +496,10 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \hypertarget{tache-4-interpruxe9tation-des-ruxe9sultats}{%
 \subsection{Tache 4: Interprétation des
 résultats}\label{tache-4-interpruxe9tation-des-ruxe9sultats}}
+
+Pour chaque test, que ce soit dans la tâche 4 ou la tâche 5, nous avons
+pris la moyenne des temps d'exécutions pour 30 tests afin de réaliser
+les graphiques. Vous trouverez ces valeurs dans le fichier EXCEL.
 
 La similarité des points pour 500 000 et 1 000 000 indique que les temps
 d'exécution sont assez uniformes, ce qui suggère que les différentes
@@ -457,7 +520,12 @@ En utilisant la valeur 4 000 000, ces résultats précédents sont
 confirmés, et la valeur optimale de k (k=3) est obtenue. On observe que
 pour les valeurs de k égales à 1, 2, 4 et 6, les temps d'exécution
 restent assez proches. Ainsi, les différences de nombre de threads n'ont
-pas d'impact significatif sur le temps d'exécution des programmes.
+pas d'impact significatif sur le temps d'exécution des programmes.\\
+Malgrè l'augmentation du nombre de thread, on remarque que les temps
+d'exécutions sont plus longs que lorsqu'on utilise moins de thread. Cela
+est dû à la gestion des threads, et notamment à leurs créations, qui
+demmandent du temps et des ressources. Il y a donc un équilibre à
+trouver lorsque l'on veut utiliser des threads.
 
 \hypertarget{intervalle-de-confiance}{%
 \subsubsection{Intervalle de confiance}\label{intervalle-de-confiance}}
@@ -660,7 +728,8 @@ modification :
 
 Initialisez un tableau isPrime de valeurs booléennes indexées de 0 à
 \(\frac{n - 2}{2}\), toutes initialisées à vrai. Le tableau isPrime sera
-moitié moins grand que le tableau A précédemment utilisé.\\
+moitié moins grand (-1 vu que 2 n'est pas dans le tableau) que le
+tableau A précédemment utilisé.\\
 Pour i = 0, 1, 2, \ldots, \(\frac{\sqrt{n} - 3}{2}\):\\
 Si isPrime{[}i{]} est vrai, cela signifie que le nombre \(k = 2i + 3\)
 est premier.\\
@@ -676,6 +745,7 @@ tableau en ne stockant que les booléens pour les nombres impairs
 supérieurs à 3. Ainsi, nous évitons de stocker les booléens pour les
 nombres pairs qui ne peuvent pas être premiers, ce qui réduit la taille
 du tableau et l'espace mémoire requis.
+
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -813,13 +883,8 @@ du tableau et l'espace mémoire requis.
 
 \pagebreak
 
-/!~GRAPH 2
-
-\pagebreak
-
-/!~GRAPH 3
-
-\pagebreak
+/!~GRAPH 2\\
+\pagebreak 
 
 \hypertarget{interpruxe9tation-des-ruxe9sultats}{%
 \subsubsection{Interprétation des
