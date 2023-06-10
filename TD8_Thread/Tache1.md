@@ -66,7 +66,7 @@ Par conséquent, en vérifiant seulement jusqu'à la racine carrée de N, nous c
 
 Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.  
 
-
+\pagebreak
 ## Tache 2
 ```c
 #include <stdio.h>
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
 }
 
 ```
-
+\pagebreak
 ## Tache 3  
 
 ```c
@@ -258,7 +258,7 @@ int main(int argc, char *argv[])
 }
 
 ```
-
+\pagebreak
 ## Tache 4: Interprétation des résultats
 
 La similarité des points pour 500 000 et 1 000 000 indique que les temps d'exécution sont assez uniformes, ce qui suggère que les différentes implémentations ne génèrent pas de performances nettement meilleures.  
@@ -273,15 +273,19 @@ En utilisant la valeur 4 000 000, ces résultats précédents sont confirmés, e
 
 Afin de calculer l'intervalle de confiance sur ces valeurs, nous pouvons poser $X$ la variable aléatoire repésentant le temps d'exécution du programme. Ensuite, nous devons calculer la moyenne de x ($\overline{x}$) ainsi que son équart type ($\sigma$).  
 Nous pouvons poser un niveau de confiance $\alpha^{*}$.  
-Dans notre cas, on peut prendre un niveau de confiance $\alpha^{*} = 95%$.  
+Dans notre cas, on peut prendre un niveau de confiance $\alpha^{*} = 95$%. 
+Si $$X \sim \mathcal{N}(\mu,\,\sigma^{2})$$ 
 On pose :  
-Le quantile d'une loi de student à 1 degré de liberté au niveau $\alpha^{*}$ : $t_1,\alpha^{*}$.  
+Le quantile d'une loi de normale centrée réduite d'ordre $\alpha^{*}$ : $u_{\alpha^{*}}$.  
 Le nombre de valeurs : $n$.  
 L'intervalle de confiance est donné par la formule :   
 \begin{equation}
-IC = [\overline{x} + \frac{t_1,\alpha^{*}* \sigma }{ \sqrt{n}}, \overline{x} + \frac{t_1,\alpha^{*} * \sigma }{ \sqrt{n}}]
+IC = [\overline{x} - u_{1- \frac{\alpha^{*}}{2}} \frac{\sigma}{\sqrt{n}} , \overline{x} + u_{1- \frac{\alpha^{*}}{2}} \frac{\sigma}{\sqrt{n}} ]
 \end{equation}
 
+Si la valeur observée se trouve dans l'intervalle de confiance, elle est considérée comme correct, sinon, on considère qu'il y a une erreur.  
+
+\pagebreak
 ## Tache 5
 ### Accélération de la boucle interne  
 Les deux cas distincts à traiter sont les suivants :  
@@ -291,6 +295,7 @@ Cas spécial pour le nombre 2 : Le nombre 2 est le seul nombre premier pair. Com
 Boucle interne pour les nombres impairs : Tous les autres nombres premiers sont impairs. Par conséquent, nous pouvons ignorer les nombres pairs lors de la boucle interne pour améliorer l'efficacité de l'algorithme. Nous effectuons donc la boucle interne avec un pas de 2i pour tous les nombres premiers impairs, en commençant par $i^2$.  
 
 En résumé, le premier cas distinct est celui du nombre 2 où nous utilisons un pas de 2 dans la boucle interne, tandis que le deuxième cas distinct est celui des autres nombres premiers impairs, pour lesquels nous utilisons également un pas de 2i dans la boucle interne.   
+
 
 ```c
 #include <stdio.h>
@@ -430,6 +435,7 @@ int main(int argc, char *argv[])
 }
 
 ```
+
 
 ### Réduction de l’espace mémoire  
 Pour réduire l'espace mémoire utilisé par l'algorithme, nous pouvons utiliser un tableau plus petit et ne stocker que les booléens pour les nombres impairs supérieurs à 3. Voici comment effectuer cette modification :  
@@ -576,3 +582,12 @@ int main(int argc, char *argv[])
 ```
 ### Interprétation des résultats
 
+Ces deux algorithmes que nous avons utilisés ont permis de générer deux graphiques illustrant les résultats obtenus après l'application de différentes optimisations. En observant ces graphiques, nous constatons, comme précédemment, que les valeurs restent assez similaires pour les entrées de 500 000 et 1 000 000. Cependant, elles deviennent plus intéressantes et exploitables lorsque les entrées atteignent 2 000 000 et 4 000 000.  
+
+En ce qui concerne l'optimisation de la boucle interne, nous remarquons que les valeurs de k égales à 2, 4, 5 et 6 sont les plus efficaces, tandis que l'algorithme séquentiel ainsi que les valeurs de k égales à 1, 3 et 7 sont moins performants. Cela suggère que les valeurs de k sélectionnées pour les threads ont une influence significative sur les performances de l'algorithme, et que certaines valeurs sont plus adaptées que d'autres pour tirer pleinement parti du parallélisme.  
+
+En ce qui concerne l'optimisation de l'espace mémoire, nous remarquons que la valeur de k égale à 5 se distingue particulièrement des autres valeurs. Cela indique que k = 5 est l'option optimale pour utiliser les threads dans ce cas spécifique. Il est intéressant de noter que, dans les deux cas d'optimisation, la valeur 5 se révèle être la plus efficace pour l'utilisation des threads. De plus, cette valeur permet d'obtenir un temps d'exécution bien meilleur que celui de l'algorithme séquentiel.  
+
+Enfin, en combinant les valeurs optimales de k pour chaque cas (5 pour l'optimisation de la boucle interne et 3 pour la version parallèle précédemment mentionnée), nous remarquons qu'avec une entrée de 4 000 000, la version parallèle simple prend environ 0,055 seconde pour s'exécuter, la version optimisée de la boucle interne prend environ 0,035 seconde, et la version optimisée de l'espace mémoire prend environ 0,024 seconde. Ces résultats indiquent que les optimisations permettent de diviser par deux le temps d'exécution du programme. Cette réduction significative du temps d'exécution est d'une importance capitale lorsqu'il s'agit de calculer des nombres premiers de grande taille.  
+
+En conclusion, ces optimisations s'avèrent extrêmement efficaces, car elles permettent de gagner un temps précieux et de calculer des nombres plus grands dans un laps de temps fini. Ces améliorations offrent également l'avantage de réduire la consommation de ressources nécessaires aux calculs.  
