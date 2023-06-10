@@ -74,3 +74,13 @@ Pour réduire l'espace mémoire utilisé par l'algorithme, nous pouvons utiliser
     Les nombres premiers seront les nombres impairs supérieurs à 2 (i.e., k = 2 * i + 3) pour lesquels isPrime[i] est vrai.
 
 Cette modification permet de réduire l'espace mémoire utilisé par le tableau en ne stockant que les booléens pour les nombres impairs supérieurs à 3. Ainsi, nous évitons de stocker les booléens pour les nombres pairs qui ne peuvent pas être premiers, ce qui réduit la taille du tableau et l'espace mémoire requis.
+
+
+# TODO :
+Clean nom fichiers
+### Tache 1
+Vérif Marius 
+### Tache 4
+Commenter graph 
+### Tache 5 
+Analyser l'impact
