@@ -33,9 +33,6 @@ int main(int argc, char **argv) {
         return 1;
     }
     unsigned long n = atol(argv[1]);
-    
-    // printf("Entrez un entier n > 1 : ");
-    // scanf("%lu", &n);
 
     if (n > 1) {
         unsigned long *tab = (unsigned long *)malloc((n+1) * sizeof(unsigned long));
