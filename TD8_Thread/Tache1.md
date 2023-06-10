@@ -264,6 +264,8 @@ int main(int argc, char *argv[])
 
 ## Tache 4: Interprétation des résultats
 
+Pour chaque test, que ce soit dans la tâche 4 ou la tâche 5, nous avons pris la moyenne des temps d'exécutions pour 30 tests afin de réaliser les graphiques. Vous trouverez ces valeurs dans le fichier EXCEL.
+
 La similarité des points pour 500 000 et 1 000 000 indique que les temps d'exécution sont assez uniformes, ce qui suggère que les différentes implémentations ne génèrent pas de performances nettement meilleures.  
 
 À partir de la valeur 2 000 000, une dispersion des valeurs devient apparente, ce qui met en évidence les différences d'implémentation de manière plus marquée. On peut observer deux groupes principaux de valeurs. Le premier groupe se situe autour de 0,030 secondes, tandis que le second groupe se situe autour de 0,036 secondes.  
@@ -271,6 +273,7 @@ La similarité des points pour 500 000 et 1 000 000 indique que les temps d'exé
 Le premier groupe est constitué des implémentations utilisant des threads pour les valeurs de k égales à 1, 2, 3, 4 et 6. Le second groupe comprend l'implémentation séquentielle ainsi que celle utilisant des threads pour les valeurs de k égales à 5 et 7.  
 
 En utilisant la valeur 4 000 000, ces résultats précédents sont confirmés, et la valeur optimale de k (k=3) est obtenue. On observe que pour les valeurs de k égales à 1, 2, 4 et 6, les temps d'exécution restent assez proches. Ainsi, les différences de nombre de threads n'ont pas d'impact significatif sur le temps d'exécution des programmes.  
+Malgrè l'augmentation du nombre de thread, on remarque que les temps d'exécutions sont plus longs que lorsqu'on utilise moins de thread. Cela est dû à la gestion des threads, et notamment à leurs créations, qui demmandent du temps et des ressources. Il y a donc un équilibre à trouver lorsque l'on veut utiliser des threads.
 
 ### Intervalle de confiance
 
@@ -443,7 +446,7 @@ int main(int argc, char *argv[])
 ### Réduction de l’espace mémoire  
 Pour réduire l'espace mémoire utilisé par l'algorithme, nous pouvons utiliser un tableau plus petit et ne stocker que les booléens pour les nombres impairs supérieurs à 3. Voici comment effectuer cette modification :  
 
-Initialisez un tableau isPrime de valeurs booléennes indexées de 0 à $\frac{n - 2}{2}$, toutes initialisées à vrai. Le tableau isPrime sera moitié moins grand que le tableau A précédemment utilisé.  
+Initialisez un tableau isPrime de valeurs booléennes indexées de 0 à $\frac{n - 2}{2}$, toutes initialisées à vrai. Le tableau isPrime sera moitié moins grand (-1 vu que 2 n'est pas dans le tableau) que le tableau A précédemment utilisé.  
 Pour i = 0, 1, 2, ..., $\frac{\sqrt{n} - 3}{2}$:  
 Si isPrime[i] est vrai, cela signifie que le nombre $k = 2i + 3$ est premier.  
 Effectuez la boucle interne avec un pas de 2k, en commençant à $j = \frac{k^2 - 3}{2}$ et augmentant j de k à chaque itération ($j += k$).  
