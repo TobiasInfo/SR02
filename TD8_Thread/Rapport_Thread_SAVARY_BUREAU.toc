@@ -1,0 +1,10 @@
+\contentsline {subsection}{Tache 1}{3}{section*.2}%
+\contentsline {subsubsection}{Dérouler l'exécution de cette algorithme avec n=20}{3}{section*.3}%
+\contentsline {subsection}{Tache 2}{5}{section*.4}%
+\contentsline {subsection}{Tache 3}{7}{section*.5}%
+\contentsline {subsection}{Tache 4: Interprétation des résultats}{12}{section*.6}%
+\contentsline {subsubsection}{Intervalle de confiance}{12}{section*.7}%
+\contentsline {subsection}{Tache 5}{13}{section*.8}%
+\contentsline {subsubsection}{Accélération de la boucle interne}{13}{section*.9}%
+\contentsline {subsubsection}{Réduction de l'espace mémoire}{16}{section*.10}%
+\contentsline {subsubsection}{Interprétation des résultats}{20}{section*.11}%

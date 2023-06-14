@@ -301,6 +301,7 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 
 \hypertarget{tache-2}{%
 \subsection{Tache 2}\label{tache-2}}
+Explication de l'algorithme avec les commentaires
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -309,17 +310,24 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \PreprocessorTok{\#include }\ImportTok{\textless{}math.h\textgreater{}}
 \PreprocessorTok{\#include }\ImportTok{\textless{}time.h\textgreater{}}
 
+\CommentTok{//Fonction qui permet de calculer les nombres premiers de 2 à n}
 \DataTypeTok{void}\NormalTok{ Eratosthenes(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab) \{}
+\CommentTok{// Initialisation du tableau de booleen à vrai}
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++) \{}
 \NormalTok{        tab[i] = }\DecValTok{1}\NormalTok{;}
 \NormalTok{    \}}
+\CommentTok{    // Calcul de l'interval de test ( 1 jusqu'à racine de n)}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ racine = $\textbackslash{}sqrt\{n\}$;}
+    \CommentTok{   //Boucle de test pour voir si ce sont des nombres premiers ou non}
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= racine; i++) \{}
+        \CommentTok{// Si le nombre est premier}
         \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{) \{}
+            \CommentTok{ // On enlève tous les multiples de i}
             \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = i * i; j \textless{}= n; j += i) \{}
 \NormalTok{                tab[j] = }\DecValTok{0}\NormalTok{;}
 \NormalTok{            \}}
 \NormalTok{    \}\}\}}
+\CommentTok{//Fonction l'affichage du tableau}
 \DataTypeTok{void}\NormalTok{ PrintTab(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab) \{}
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{2}\NormalTok{; i \textless{}= n; i++) \{}
         \ControlFlowTok{if}\NormalTok{ (tab[i] == }\DecValTok{1}\NormalTok{) \{}
@@ -329,21 +337,31 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \NormalTok{    printf(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
 \NormalTok{\}}
 \DataTypeTok{int}\NormalTok{ main(}\DataTypeTok{int}\NormalTok{ argc, }\DataTypeTok{char}\NormalTok{ **argv) \{}
+    \CommentTok{   // On vérifie que seulement 1 argument est passé au programme}
     \ControlFlowTok{if}\NormalTok{(argc != }\DecValTok{2}\NormalTok{) \{}
 \NormalTok{        printf(}\StringTok{"Usage: \%s \textless{}n\textgreater{}}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, argv[}\DecValTok{0}\NormalTok{]);}
         \ControlFlowTok{return} \DecValTok{1}\NormalTok{;}
 \NormalTok{    \}}
+    \CommentTok{    // Conversion de l'argument en long}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = atol(argv[}\DecValTok{1}\NormalTok{]);}
+    \CommentTok{   // Aucun n appartenant à [0;1] n'est premier, on traite donc uniquement les cas ou n > 1}
     \ControlFlowTok{if}\NormalTok{ (n \textgreater{} }\DecValTok{1}\NormalTok{) \{}
-        \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc((n+}\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
+        \CommentTok{ // Création du tableau de booleen : n+1 car l'index correspond }
+        \CommentTok{ //à un nombre et la valeure de l'index le booleen (1 = premier, 0 = pas premier)}
+        \CommentTok{ //0 étant en nombre et les indices commencant à 0, }
+        \CommentTok{ //nécessiter de rajouter une case au tableau}
+    \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc((n+}\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
+    \CommentTok{        // Variables pour récupérer le temps}
 \NormalTok{        clock\_t start, end;}
         \DataTypeTok{double}\NormalTok{ temps\_execution;}
+        \CommentTok{// On lance le chronomètre}
 \NormalTok{        start = clock();}
 \NormalTok{        Eratosthenes(n, tab);}
 \NormalTok{        end = clock();}
 \NormalTok{        temps\_execution = ((}\DataTypeTok{double}\NormalTok{) (end {-} start)) / CLOCKS\_PER\_SEC;}
 \NormalTok{        printf(}\StringTok{"\%f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, temps\_execution);}
         \CommentTok{// PrintTab(100, tab);}
+        \CommentTok{// Libération du tableau}
 \NormalTok{        free(tab);}
 \NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
 \NormalTok{        printf(}\StringTok{"n doit être supérieur à 1.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{);}
@@ -362,8 +380,10 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \PreprocessorTok{\#include }\ImportTok{\textless{}stdlib.h\textgreater{}}
 \PreprocessorTok{\#include }\ImportTok{\textless{}math.h\textgreater{}}
 \PreprocessorTok{\#include }\ImportTok{\textless{}pthread.h\textgreater{}}
+\CommentTok{// Constante }
 \PreprocessorTok{\#define k 7}
 
+\CommentTok{// Strucutre qui va permettre d'envoyer plusieurs variables à un thread}
 \KeywordTok{typedef} \KeywordTok{struct}
 \NormalTok{\{}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab;}
@@ -373,24 +393,36 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \NormalTok{    pthread\_mutex\_t *mutex;}
 \NormalTok{\} ArgumentThread;}
 
+\CommentTok{//Fonction utiliser par les thread}
 \DataTypeTok{void}\NormalTok{ *fonctionThread(}\DataTypeTok{void}\NormalTok{ *argument)}
 \NormalTok{\{}
+\CommentTok{    // Initialisation des variables}
 \NormalTok{    ArgumentThread *arg = (ArgumentThread *)argument;}
+    \CommentTok{    // Tableau de booleen}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = arg{-}\textgreater{}tab;}
+    \CommentTok{    // Valeur de i à tester}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = arg{-}\textgreater{}i;}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n = arg{-}\textgreater{}n;}
+    \CommentTok{ \\  Ici le choix de l'implémentation des thread à été définis a ce que les threads }
+    \CommentTok{ \\ commencent à une valeure donnée (i) et se termine à racine(n) avec un pas de k }
+    \CommentTok{ \\ Ce choix d'implémentation a été réfléchi : étant donné que plus i est bas, }
+    \CommentTok{ \\ plus il y a de multiple à enlever, autant traiter les nombres les plus petits en premier }
+    \CommentTok{ \\ On répartit donc les petits nombres à chaque thread puis on incrémente i du nombre de thread   }
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ t = i; t \textless{}= arg{-}\textgreater{}racine; t += k)}
 \NormalTok{    \{}
         \ControlFlowTok{if}\NormalTok{ (tab[t] == }\DecValTok{1}\NormalTok{)}
 \NormalTok{        \{}
+\CommentTok{            // On utilise un mutex pour éviter l'accés concurentiel}
 \NormalTok{            pthread\_mutex\_lock(arg{-}\textgreater{}mutex);}
             \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ j = t * t; j \textless{}= n; j += t)}
 \NormalTok{            \{}
 \NormalTok{                tab[j] = }\DecValTok{0}\NormalTok{;}
 \NormalTok{            \}}
+\CommentTok{      //Libération du mutex}
 \NormalTok{            pthread\_mutex\_unlock(arg{-}\textgreater{}mutex);}
 \NormalTok{        \}}
 \NormalTok{    \}}
+\CommentTok{       // Retour du thread}
 \NormalTok{    pthread\_exit(NULL);}
 \NormalTok{\}}
 \end{Highlighting}
@@ -399,27 +431,35 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
     \begin{Highlighting}[]
 \DataTypeTok{void}\NormalTok{ Eratosthenes(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ n, }\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab)}
 \NormalTok{\{}
+\CommentTok{    // Initialisation du tableau de thread}
 \NormalTok{    pthread\_t *thread = malloc(}\KeywordTok{sizeof}\NormalTok{(pthread\_t) * k);}
     \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ indexThread = }\DecValTok{0}\NormalTok{;}
+    \CommentTok{// Creation du mutex}
 \NormalTok{    pthread\_mutex\_t mutex;}
 \NormalTok{    pthread\_mutex\_init(\&mutex, NULL);}
 
+\CommentTok{    // Initialisation des thread }
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{int}\NormalTok{ cpt = }\DecValTok{0}\NormalTok{; cpt \textless{} k; cpt++)}
 \NormalTok{    \{}
+\CommentTok{    	// Data a envoyer au thread}
 \NormalTok{        ArgumentThread *arg = malloc(}\KeywordTok{sizeof}\NormalTok{(ArgumentThread));}
 \NormalTok{        arg{-}\textgreater{}tab = tab;}
+\CommentTok{// Ici i = 2 + cpt car come dit précédemment on veut traiter les petits nombre en premier }
 \NormalTok{        arg{-}\textgreater{}i = }\DecValTok{2}\NormalTok{ + cpt;}
 \NormalTok{        arg{-}\textgreater{}n = n;}
 \NormalTok{        arg{-}\textgreater{}racine = $\textbackslash{}sqrt\{n\}$;}
 \NormalTok{        arg{-}\textgreater{}mutex = \&mutex;}
         
+\CommentTok{        // Création des threads}
 \NormalTok{        pthread\_create(\&thread[indexThread], NULL, fonctionThread, arg);}
 \NormalTok{        indexThread++;}
 \NormalTok{    \}}
+\CommentTok{    // On attends la fin de tous les threads}
     \ControlFlowTok{for}\NormalTok{ (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ i = }\DecValTok{0}\NormalTok{; i \textless{} indexThread; i++)}
 \NormalTok{    \{}
 \NormalTok{        pthread\_join(thread[i], NULL);}
 \NormalTok{    \}}
+\CommentTok{    // Libération du tableau de thread et du mutex}
 \NormalTok{    free(thread);}
 \NormalTok{    pthread\_mutex\_destroy(\&mutex);}
 \NormalTok{\}}
@@ -461,6 +501,9 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 
     \ControlFlowTok{if}\NormalTok{ (n \textgreater{} }\DecValTok{1}\NormalTok{)}
 \NormalTok{    \{}
+\CommentTok{   // Création du tableau de booleen : n+1 car l'index correspond }
+\CommentTok{// à un nombre et la valeure de l'index le booleen (1 = premier, 0 = pas premier) }
+\CommentTok{//0 étant en nombre et les indices commencant à 0, nécessiter de rajouter une case au tableau }
         \DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *tab = (}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{ *)malloc((n + }\DecValTok{1}\NormalTok{) * }\KeywordTok{sizeof}\NormalTok{(}\DataTypeTok{unsigned} \DataTypeTok{long}\NormalTok{));}
 \NormalTok{        clock\_t start, end;}
         \DataTypeTok{double}\NormalTok{ temps\_execution;}
@@ -469,14 +512,18 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 \NormalTok{        \{}
 \NormalTok{            tab[i] = }\DecValTok{1}\NormalTok{;}
 \NormalTok{        \}}
+\CommentTok{         // Initialisation du chrono}
 \NormalTok{        start = clock();}
 \NormalTok{        Eratosthenes(n, tab);}
+\CommentTok{        // Fin du chrono}
 \NormalTok{        end = clock();}
+\CommentTok{         // Calcul du temps}
 \NormalTok{        temps\_execution = ((}\DataTypeTok{double}\NormalTok{)(end {-} start)) / CLOCKS\_PER\_SEC;}
 \NormalTok{        printf(}\StringTok{"\%f}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, temps\_execution);}
 
 \NormalTok{        PrintIndex(n, tab);}
         \CommentTok{// PrintTab(n, tab);}
+        \CommentTok{// Libération du tableau}
 \NormalTok{        free(tab);}
 \NormalTok{    \}}
     \ControlFlowTok{else}
