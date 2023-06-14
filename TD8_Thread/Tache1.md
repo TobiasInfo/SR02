@@ -68,20 +68,28 @@ Cela permet d'optimiser l'algorithme et d'améliorer son efficacité.
 
 \pagebreak
 ## Tache 2
+Explication de l'algorithme avec les commentaires
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
 
+/*
+Fonction qui permet de calculer les nombres premiers de 2 à n
+*/
 void Eratosthenes(unsigned long n, unsigned long *tab) {
+    // Initialisation du tableau de booleen à vrai
     for (unsigned long i = 2; i <= n; i++) {
         tab[i] = 1;
     }
-
+    // Calcul de l'interval de test ( 1 jusqu'à racine de n)
     unsigned long racine = $\sqrt{n}$;
+    //Boucle de test pour voir si ce sont des nombres premiers ou non
     for (unsigned long i = 2; i <= racine; i++) {
+    	// Si le nombre est premier
         if (tab[i] == 1) {
+            // On enlève tous les multiples de i
             for (unsigned long j = i * i; j <= n; j += i) {
                 tab[j] = 0;
             }
@@ -89,6 +97,9 @@ void Eratosthenes(unsigned long n, unsigned long *tab) {
     }
 }
 
+/*
+Fonction d'affichage du tableau
+*/
 void PrintTab(unsigned long n, unsigned long *tab) {
     for (unsigned long i = 2; i <= n; i++) {
         if (tab[i] == 1) {
@@ -99,25 +110,31 @@ void PrintTab(unsigned long n, unsigned long *tab) {
 }
 
 int main(int argc, char **argv) {
+   // On vérifie que seulement 1 argument est passé au programme
     if(argc != 2) {
         printf("Usage: %s <n>\n", argv[0]);
         return 1;
     }
+    // Conversion de l'argument en long
     unsigned long n = atol(argv[1]);
-
+    // Aucun n appartenant à [0;1] n'est premier, on traite donc uniquement les cas ou n > 1
     if (n > 1) {
+    // Création du tableau de booleen : n+1 car l'index correspond à un nombre et la valeure de l'index le booleen (1 = premier, 0 = pas premier)
+    //0 étant en nombre et les indices commencant à 0, nécessiter de rajouter une case au tableau 
         unsigned long *tab = (unsigned long *)malloc((n+1) * sizeof(unsigned long));
+        // Variables pour récupérer le temps
         clock_t start, end;
         double temps_execution;
-
+	// On lance le chrono
         start = clock();
+        // Lancement de la fonction de calcul, qui prend en argument n ainsi que le tableau de booleen
         Eratosthenes(n, tab);
         end = clock();
 
         temps_execution = ((double) (end - start)) / CLOCKS_PER_SEC;
         printf("%f\n", temps_execution);
-        // PrintTab(100, tab);
-
+	
+	// Libération du tableau
         free(tab);
     } else {
         printf("n doit être supérieur à 1.\n");
@@ -127,6 +144,7 @@ int main(int argc, char **argv) {
 }
 
 ```
+
 \pagebreak
 ## Tache 3  
 
@@ -135,8 +153,10 @@ int main(int argc, char **argv) {
 #include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
+// Constante 
 #define k 7
 
+// Strucutre qui va permettre d'envoyer plusieurs variables à un thread
 typedef struct
 {
     unsigned long *tab;
@@ -146,50 +166,69 @@ typedef struct
     pthread_mutex_t *mutex;
 } ArgumentThread;
 
+//Fonction utiliser par les thread
 void *fonctionThread(void *argument)
 {
+    // Initialisation des variables
     ArgumentThread *arg = (ArgumentThread *)argument;
+    // Tableau de booleen
     unsigned long *tab = arg->tab;
+    // Valeur de i à tester
     unsigned long i = arg->i;
     unsigned long n = arg->n;
+    /*
+    Ici le choix de l'implémentation des thread à été définis a ce que les threads commencent à une valeure donnée (i) et se termine à racine(n) avec un pas de k 
+    Ce choix d'implémentation a été réfléchi : étant donné que plus i est bas, plus il y a de multiple à enlever, autant traiter les nombres les plus petits en premier 
+    On répartit donc les petits nombres à chaque thread puis on incrémente i du nombre de thread
+    */
     for (unsigned long t = i; t <= arg->racine; t += k)
     {
         if (tab[t] == 1)
         {
+            // On utilise un mutex pour éviter l'accés concurentiel
             pthread_mutex_lock(arg->mutex);
             for (unsigned long j = t * t; j <= n; j += t)
             {
                 tab[j] = 0;
             }
+            /Libération du mutex
             pthread_mutex_unlock(arg->mutex);
         }
     }
+    // Retour du thread
     pthread_exit(NULL);
 }
 
 void Eratosthenes(unsigned long n, unsigned long *tab)
 {
+    // Initialisation du tableau de thread
     pthread_t *thread = malloc(sizeof(pthread_t) * k);
     unsigned long indexThread = 0;
+    // Créationd du mutex
     pthread_mutex_t mutex;
     pthread_mutex_init(&mutex, NULL);
     
+    // Initialisation des thread 
     for (int cpt = 0; cpt < k; cpt++)
     {
+    	// Data a envoyer au thread
         ArgumentThread *arg = malloc(sizeof(ArgumentThread));
         arg->tab = tab;
+	// Ici i = 2 + cpt car come dit précédemment on veut traiter les petits nombre en premier 
         arg->i = 2 + cpt;
         arg->n = n;
         arg->racine = $\sqrt{n}$;
         arg->mutex = &mutex;
-        
+        // Création des threads
         pthread_create(&thread[indexThread], NULL, fonctionThread, arg);
         indexThread++;
     }
+    // On attends la fin de tous les threads
     for (unsigned long i = 0; i < indexThread; i++)
     {
         pthread_join(thread[i], NULL);
     }
+    // Libération du tableau de thread et du mutex
     free(thread);
     pthread_mutex_destroy(&mutex);
 }
@@ -231,6 +270,8 @@ int main(int argc, char *argv[])
 
     if (n > 1)
     {
+    // Création du tableau de booleen : n+1 car l'index correspond à un nombre et la valeure de l'index le booleen (1 = premier, 0 = pas premier)
+    //0 étant en nombre et les indices commencant à 0, nécessiter de rajouter une case au tableau 
         unsigned long *tab = (unsigned long *)malloc((n + 1) * sizeof(unsigned long));
         clock_t start, end;
         double temps_execution;
@@ -239,14 +280,18 @@ int main(int argc, char *argv[])
         {
             tab[i] = 1;
         }
+        // Initialisation du chrono
         start = clock();
         Eratosthenes(n, tab);
+        // Fin du chrono
         end = clock();
+        // Calcul du temps
         temps_execution = ((double)(end - start)) / CLOCKS_PER_SEC;
         printf("%f\n", temps_execution);
 
         PrintIndex(n, tab);
         // PrintTab(n, tab);
+        // Libération du tableau
         free(tab);
     }
     else
